@@ -113,7 +113,7 @@
 
     <!-- Sign Up link -->
     <p class="text-center text-sm text-text-secondary-light dark:text-text-secondary-dark mt-4">
-      Don't have an account? <a href="../Login_screen/create.html" class="font-semibold text-primary dark:text-blue-400 hover:underline">Sign Up</a>
+      Don't have an account? <a href="/Login_screen/create.html" class="font-semibold text-primary dark:text-blue-400 hover:underline">Sign Up</a>
     </p>
 
   </div>
@@ -140,7 +140,7 @@ function handleLogin() {
   if (email === "isravel@gmail.com" && password === "isravel@1234") {
     user = { name: "Isravel", email, type: "premium" };
     localStorage.setItem('loggedUser', JSON.stringify(user));
-    window.location.href = "../../Premium_Users/productscreen.html"; // ✅ adjust path as needed
+    window.location.href = "../Premium_Users/productscreen.html"; // ✅ adjust path as needed
     return;
   }
 
