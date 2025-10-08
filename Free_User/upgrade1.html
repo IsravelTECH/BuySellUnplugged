@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BuySellUnplugged - Go Premium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center p-4">
+<button class="text-slate-800 dark:text-white" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="flex-1 text-center text-lg font-bold text-slate-900 dark:text-white pr-6">Go Premium</h1>
+</div>
+</header>
+<main class="flex-grow">
+<div class="relative min-h-[220px] bg-cover bg-center flex items-end p-6" style="background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7fz3qxBqtaKoLtCzDmZqGHBca16bOeVs9irUa3vC2nwXVssUNUbXDXLPKzqaFtcdzGzSfmyOngwgWVH938KAfEOv-RKCTIhHt7OoVZmTSSE6qpffKEw_RfjH05thBwHfp7uTyq1wR19RVapezJ_Jh3znXC5o8xhP3AGEe_PnU_f5YYIdv1xfB4I0767Sq8YCgByap5yZQ9pcnEJYDjOdvaJM-R051HkRaP5scJskgEHjQ8bUgmEAPGPcxv7JD_Ma-jDKcxKvHoSLk')">
+<h2 class="text-3xl font-bold text-white">Unlock Premium Features</h2>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 bg-primary/10 dark:bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Advanced Search</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Refine your search with advanced filters.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 bg-primary/10 dark:bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">bookmark_add</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Watchlist</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Track items you're interested in.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 bg-primary/10 dark:bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Product Reminders</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Get notified when items are back in stock.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 bg-primary/10 dark:bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Focus Mode</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Minimize distractions while browsing.</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="sticky bottom-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm p-4">
+<button class="w-full h-12 px-6 text-white font-bold bg-primary rounded-lg shadow-lg hover:opacity-90 transition-opacity" onclick="window.location.href='../../../../Free_User/plan.html';">
+        Upgrade to Premium
+      </button>
+</footer>
+</div>
+
+</body></html>

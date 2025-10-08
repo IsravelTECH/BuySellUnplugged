@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketplace - Handmade Ceramic Mug</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#1173d4",
+        "background-light": "#f6f7f8",
+        "background-dark": "#101922",
+      },
+      fontFamily: {
+        display: ["Plus Jakarta Sans"],
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        full: "9999px",
+      },
+    },
+  },
+};
+</script>
+<style>
+  body { min-height: max(884px, 100dvh); font-family: "Plus Jakarta Sans", sans-serif; }
+  .carousel-container { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
+  .carousel-container::-webkit-scrollbar { display: none; }
+  .carousel-item { scroll-snap-align: center; flex-shrink: 0; }
+  #premiumModal { backdrop-filter: blur(8px); background: rgba(0, 0, 0, 0.4); transition: opacity 0.3s ease; }
+  #premiumModal.hidden { opacity: 0; pointer-events: none; }
+</style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen flex-col">
+<header class="sticky top-0 z-20 border-b border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center justify-between p-4">
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300" onclick="history.back()">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
+</button>
+<h1 class="text-lg font-bold text-zinc-900 dark:text-white">Marketplace</h1>
+<div class="flex items-center gap-2">
+<button class="h-10 w-10 overflow-hidden rounded-full">
+<img alt="Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyUrF-2hdiu3SEK3fAWKcxoxBurSywUtYu3sInti39f7h1gmZxOCj70z0z0Pww7mlPo1X2AgySTI0SEWdv8tt9bdosVB1byFCxJa0QzW8zHfZeAj1XzGPJyhMDze7O0egKBehNwxItwTFG-ywJ73lGb_peaziVUaY9enC8NwWADPs5ql-q0-wMyuEG1vSxM3SOVE28A3fmJRsTTBVjOoW7GFrxd1LF_C6ES32zuh8FK7sb-W5hRkIma7G5MAqSHF85thFSpnhYE07N"/>
+</button>
+</div>
+</div>
+</header>
+
+<main class="flex-1 overflow-y-auto pb-24">
+<div class="relative">
+  <div class="carousel-container flex snap-x snap-mandatory overflow-x-auto">
+    <div class="carousel-item w-full flex-shrink-0">
+      <img alt="Handmade Ceramic Mug" class="w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKIzu1VHTMNsPE8KX7Dv-2RmaE6ZlJPoN8LVwOzJt6kCXZq4mfS8mktw36pvZCmqNXh9miA6oRfAMU3kA_OItugntwrYOXR_QtX-XLhvqPm9wJ8CfBny1mpfJ6uln9bRU4ssJZ_PNbC73gGvWu96Hbay8BnB-reyIYtRyNSdzYcv1Ce8EJtD215U_LCGbiCQXqYEjtpo20ubKjna2fdXWq2CuxBVKjvpU4GjANVs5WSgTl8uTQRSe_cNuTiAg9vLM-rjnbK0oOFfyh"/>
+    </div>
+  </div>
+</div>
+
+<div class="p-4 space-y-4">
+  <div>
+    <p class="text-2xl font-bold text-green-600 dark:text-green-500">$15</p>
+    <h2 class="text-xl font-bold text-zinc-900 dark:text-white mt-1">Handmade Ceramic Mug</h2>
+  </div>
+  <div class="flex items-center text-sm text-zinc-600 dark:text-zinc-400">
+    <span class="font-medium">Condition:</span>
+    <span class="ml-2">New</span>
+  </div>
+  <div class="flex items-center text-sm text-zinc-600 dark:text-zinc-400">
+    <span class="material-symbols-outlined mr-2 text-zinc-500">location_on</span>
+    <span>Los Angeles, CA</span>
+  </div>
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="fixed bottom-0 left-0 right-0 border-t border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+  <nav class="flex items-center justify-around px-4 pb-3 pt-2">
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> search </span>
+      <span class="text-xs font-medium">Search</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> bookmark </span>
+      <span class="text-xs font-medium">Watchlist</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+
+    <a class="flex flex-col items-center gap-1 text-primary" href="#">
+      <span class="material-symbols-outlined"> home </span>
+      <span class="text-xs font-bold">Home</span>
+    </a>
+
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> notifications </span>
+      <span class="text-xs font-medium">Reminder</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> data_usage </span>
+      <span class="text-xs font-medium">Focus</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+  </nav>
+</footer>
+</div>
+
+
+<!-- Premium Popup with blurred background -->
+<div id="premiumModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-white/30 dark:bg-black/40 backdrop-blur-md">
+  <div class="relative w-full max-w-sm rounded-xl bg-white p-6 text-center dark:bg-zinc-800 shadow-xl">
+    <div class="absolute -top-3 left-1/2 -translate-x-1/2 transform">
+      <div class="relative rounded-md bg-zinc-100 p-2 dark:bg-zinc-700">
+        <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">Premium feature</p>
+        <div class="absolute -bottom-2 left-1/2 h-0 w-0 -translate-x-1/2 border-x-8 border-t-8 border-x-transparent border-t-zinc-100 dark:border-t-zinc-700"></div>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+      <span class="material-symbols-outlined text-4xl">workspace_premium</span>
+    </div>
+
+    <h2 class="mt-4 text-2xl font-bold text-zinc-900 dark:text-white">Go Premium</h2>
+    <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+      Unlock exclusive features like Watchlist, Search, Reminders, and Focus mode to enhance your buying and selling experience.
+    </p>
+
+    <button class="mt-6 w-full rounded-lg bg-primary py-3 font-semibold text-white"
+      onclick="window.location.href='../../../../Premium_User/premium_upsell_screen_1/code.html';">
+      Upgrade to Premium
+    </button>
+
+    <button class="mt-2 w-full py-3 font-semibold text-zinc-600 dark:text-zinc-300"
+      onclick="togglePremiumModal(false);">
+      Not now
+    </button>
+  </div>
+</div>
+
+<script>
+  function togglePremiumModal(show) {
+    const modal = document.getElementById("premiumModal");
+    if (show) modal.classList.remove("hidden");
+    else modal.classList.add("hidden");
+  }
+
+  document.querySelectorAll(".locked").forEach(btn => {
+    btn.addEventListener("click", () => togglePremiumModal(true));
+  });
+</script>
+
+</div>
+</body>
+</html>

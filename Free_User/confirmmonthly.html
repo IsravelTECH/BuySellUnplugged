@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Confirmation</title>
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#1173d4",
+        "background-light": "#f6f7f8",
+        "background-dark": "#101922",
+      },
+      fontFamily: {
+        "display": ["Plus Jakarta Sans"]
+      }
+    }
+  }
+}
+</script>
+<style>
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="flex flex-col h-screen justify-between">
+
+<main class="flex-grow flex flex-col items-center justify-center text-center px-6 pt-16">
+  <div class="mb-6">
+    <div class="bg-primary/20 dark:bg-primary/30 rounded-full p-4 inline-block">
+      <div class="bg-primary/20 dark:bg-primary/30 rounded-full p-3">
+        <svg class="text-primary size-10" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.99999 15.172L19.192 5.979L20.606 7.393L9.99999 18L3.63599 11.636L5.04999 10.222L9.99999 15.172Z"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Premium Activated!</h1>
+  <p class="text-slate-600 dark:text-slate-400 max-w-sm">
+    Your monthly premium plan is now active. Enjoy exclusive features and benefits.
+  </p>
+
+  <div class="w-full max-w-sm mt-8 p-4 bg-white dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
+    <div class="flex items-center">
+      <div class="bg-primary/10 text-primary p-3 rounded-lg">
+        <svg fill="currentColor" height="24" width="24" viewBox="0 0 256 256">
+          <path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,16V88H32V64ZM224,192H32V104H224v88Z"></path>
+        </svg>
+      </div>
+      <div class="ml-4 text-left">
+        <p class="font-bold text-slate-900 dark:text-white">Monthly Premium Plan</p>
+        <p class="text-slate-600 dark:text-slate-400">$9.99 / Month</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Updated Button -->
+  <div class="w-full max-w-sm mt-8">
+    <button 
+      class="w-full bg-primary text-white font-bold py-3 px-5 rounded-lg hover:bg-primary/90 transition-colors"
+      onclick="activatePremiumAndRedirect()"
+    >
+      Continue to BuySell
+    </button>
+  </div>
+
+  <div class="mt-4">
+    <a class="text-primary font-medium hover:underline" href="#">Manage Subscription</a>
+  </div>
+</main>
+</div>
+
+<script>
+function activatePremiumAndRedirect() {
+  const userData = localStorage.getItem('loggedUser');
+  let user = userData ? JSON.parse(userData) : null;
+
+  if (!user) {
+    user = {
+      name: "PremiumUser",
+      email: "premiumuser@buysell.com",
+      type: "premium"
+    };
+  } else {
+    user.type = "premium"; // ✅ upgrade
+  }
+
+  localStorage.setItem('loggedUser', JSON.stringify(user));
+  window.location.href = "../../../../Premium_Users/productscreen.html";
+}
+
+</script>
+
+</body>
+</html>

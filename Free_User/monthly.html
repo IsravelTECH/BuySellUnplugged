@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Method</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" 
+    rel="stylesheet" 
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: { display: ["Plus Jakarta Sans"] },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .form-radio:checked {
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%231173d4' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+      border-color: #1173d4;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+  <div class="flex flex-col h-screen justify-between">
+    <!-- Header -->
+    <header class="p-4 flex items-center">
+      <button class="p-2" onclick="history.back()">
+        <span class="material-symbols-outlined text-slate-900 dark:text-slate-50">arrow_back</span>
+      </button>
+      <h1 class="text-xl font-bold text-center flex-grow text-slate-900 dark:text-slate-50 pr-8">
+        Payment Method
+      </h1>
+    </header>
+
+    <!-- Main Content -->
+<main class="flex flex-col items-center justify-center flex-grow p-4">
+  <h2 class="text-lg font-bold mb-6 text-slate-900 dark:text-slate-50">Select Payment Method</h2>
+  <div class="flex flex-col space-y-6 w-full max-w-sm"> <!-- Increased space-y for bigger gap -->
+    <!-- Apple Pay -->
+    <label class="flex items-center gap-4 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+      <div class="flex-grow flex items-center gap-2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" class="h-5 w-5" />
+        <p class="font-medium text-slate-900 dark:text-slate-50">Apple Pay</p>
+      </div>
+      <input checked class="form-radio h-5 w-5 text-primary bg-transparent border-slate-400 dark:border-slate-600 focus:ring-primary" name="payment-method" type="radio"/>
+    </label>
+
+    <!-- Google Pay -->
+    <label class="flex items-center gap-4 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+      <div class="flex-grow flex items-center gap-2">
+        <img src="https://i.pinimg.com/736x/ea/4d/f5/ea4df535ef139dc6b904040a8323095f.jpg" alt="Google Pay" class="h-5 w-5" />
+        <p class="font-medium text-slate-900 dark:text-slate-50">Google Pay</p>
+      </div>
+      <input class="form-radio h-5 w-5 text-primary bg-transparent border-slate-400 dark:border-slate-600 focus:ring-primary" name="payment-method" type="radio"/>
+    </label>
+  </div>
+</main>
+
+
+
+    <!-- Footer -->
+    <footer class="p-4 bg-background-light dark:bg-background-dark">
+      <div class="flex items-start mb-4">
+        <input class="form-checkbox h-5 w-5 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-slate-200 dark:bg-slate-700 mt-0.5" id="terms" name="terms" type="checkbox"/>
+        <label class="ml-3 text-sm text-slate-600 dark:text-slate-400" for="terms">
+          I agree to the <a class="font-medium text-primary hover:underline" href="#">Terms and Conditions</a>.
+        </label>
+      </div>
+<button 
+  id="confirmPaymentBtn"
+  class="w-full bg-primary text-white font-bold py-4 px-5 rounded-xl h-14 flex items-center justify-center transition-opacity hover:opacity-90"
+>
+  Confirm Payment
+</button>
+
+    </footer>
+  </div>
+  <script>
+  document.getElementById("confirmPaymentBtn").addEventListener("click", function () {
+    const termsChecked = document.getElementById("terms").checked;
+
+    if (!termsChecked) {
+      alert("Please agree to the Terms and Conditions before proceeding.");
+      return;
+    }
+
+    // Proceed to payment if terms are accepted
+    window.location.href = "../../../../Free_User/confirmyearly.html";
+  });
+</script>
+
+</body>
+</html>

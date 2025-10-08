@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1173d4",
+            blueAccent: "#3BA7FF", // Light blue accent
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            gold: "#FFD700",   /* ✅ added gold */
+          },
+          fontFamily: {
+            display: ["Plus Jakarta Sans"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .carousel-container {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;-ms-overflow-style: none;}
+    .carousel-container::-webkit-scrollbar {
+      display: none;}
+    .carousel-item {
+      scroll-snap-align: center;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen flex-col">
+<header class="sticky top-0 z-10 border-b border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+  <div class="flex items-center justify-between p-4">
+    <button class="text-foreground-light dark:text-foreground-dark" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+    <h1 class="text-xl font-bold text-zinc-900 dark:text-white">Marketplace</h1>
+    <div class="flex items-center gap-4">
+      <!-- ✅ Yellow badge icon -->
+      <button class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300">
+        <span class="material-symbols-outlined text-gold"> workspace_premium </span>
+      </button>
+<!-- Profile Dropdown -->
+<div class="relative" id="profileMenu">
+  <button id="profileBtn" class="h-10 w-10 flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 overflow-hidden bg-zinc-100 dark:bg-zinc-800 text-white font-bold text-lg">
+    <span id="profileInitial" class="text-blue-400 font-bold text-lg leading-none select-none"></span> <!-- Fallback letter -->
+    <img id="profileImg" class="h-full w-full object-cover hidden" alt="Profile" />
+  </button>
+
+  <!-- Dropdown -->
+  <div id="profileDropdown"
+    class="hidden absolute right-0 mt-2 w-56 rounded-lg bg-background-light dark:bg-zinc-800 shadow-lg p-3 z-50">
+    <p id="userName" class="font-semibold text-zinc-900 dark:text-white">User Name</p>
+    <p id="userEmail" class="text-sm text-zinc-600 dark:text-zinc-400 truncate">user@email.com</p>
+    <hr class="my-2 border-zinc-200 dark:border-zinc-700">
+    <button id="logoutBtn"
+      class="w-full text-left text-red-600 hover:text-red-700 font-medium">Logout</button>
+  </div>
+</div>
+
+  </div>
+</header>
+
+<main class="flex-1 overflow-y-auto pb-24">
+<div class="relative">
+<div class="carousel-container flex snap-x snap-mandatory overflow-x-auto">
+<div class="carousel-item w-full flex-shrink-0">
+<img alt="Vintage Leather Jacket" class="w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL"/>
+</div>
+<div class="carousel-item w-full flex-shrink-0">
+<img alt="Vintage Leather Jacket side view" class="w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi7sAQq66MuAUGAYIAHo0c4a65VxSenwfGnyUiubVaZIYNRG45hy2R1gd7fxGlbffsza3QzneO5HGibDZ5vFMtMDueZJa9csvS_N5M-jcWZHuHqvJM_fgY02UwfBlifkmGkov6YKc9aHsibjMXBqBnSmNaAWOPQJzA4ZEyHglhDrJlHfpTIhu2GejyBumzTHLF6JgdYbyXj84o43dbitFDhE7UCJ6Kw5xjMZTEOSq_4OeI8JwN3XxS4JLoI2HYKJGm6ypCGZfXXN2M"/>
+</div>
+<div class="carousel-item w-full flex-shrink-0">
+<img alt="Vintage Leather Jacket back view" class="w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2Ny5TyJQGy9cHwFdxu1N7cs0_a0fc2tXj-8XaNVZSKzZvFbyh9PwluQ3s_oqZvqy84R7p70IV9XGPDDadXAlC1IqPKePtFkso-i8wHrtUj8wrLBKMr8r8GcKDkOukX0lzKW_NKCiu-RwRUlSoCEDdYygBfFEoMF4gmyqnDDidWNJFxr0Rmsp4MDKDiWPfiGRY_U5r6J62o3FIBPRoTqkmW5hWyCKC3u3ymmRrW08S24jy0GItBidu5T4j4Tnrwx3NeutGvFnBqaUe"/>
+</div>
+</div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+<div class="w-2 h-2 rounded-full bg-white/50"></div>
+<div class="w-2 h-2 rounded-full bg-white/50"></div>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<div>
+<p class="text-2xl font-bold text-green-600 dark:text-green-500">$25</p>
+<h2 class="text-xl font-bold text-zinc-900 dark:text-white mt-1">Vintage Leather Jacket</h2>
+</div>
+<div class="flex items-center text-sm text-zinc-600 dark:text-zinc-400">
+<span class="font-medium">Condition:</span>
+<span class="ml-2">Used - Like New</span>
+</div>
+<div class="flex items-center text-sm text-zinc-600 dark:text-zinc-400">
+<span class="material-symbols-outlined mr-2 text-zinc-500">location_on</span>
+<span>Brooklyn, NY</span>
+</div>
+<div class="border-t border-b border-zinc-200 dark:border-zinc-700 py-4">
+<h3 class="font-bold text-zinc-900 dark:text-white mb-3">Seller information</h3>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="Seller Profile" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/a/ACg8ocK_M4JpA7N0xJWk5A_1R4_Jq3V8p_M3J2yH6eQ_2tO1pGk=s96-c"/>
+<div>
+<p class="font-semibold text-zinc-800 dark:text-zinc-200">John Doe</p>
+</div>
+</div>
+<button class="text-primary font-semibold text-sm">Message</button>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-zinc-900 dark:text-white mb-2">Description</h3>
+<p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+            Classic vintage leather jacket in excellent condition. Barely worn. This jacket has a timeless design, perfect for any occasion. Made from high-quality genuine leather. No scratches or marks.
+          </p>
+</div>
+<div>
+<h3 class="font-bold text-zinc-900 dark:text-white mb-2">Pickup Location</h3>
+<div class="aspect-video rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700">
+<img alt="Map showing pickup location" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk0SJ_izFVLsjGx-5_GVuh1eSjfZ7q4yXlbfcHa-gKyayAHQQKLI5QIG6oD7j7XFDeFpwM1TVIV87IonXVu1r6rvEp5zP0jWbeR0FLELdLQgQlKyHG8Uagrxr_kuXwOEaixd71C7zZcS88P-xeKoQAwdmuWKLhHTAQ8nBT5RJn1JWnPKOkqGERxgznFlrpVqO54Ft9ruts2ltD-zfiz-hYpf67B0mwGA0-1-R__jx7sjaU0UhBS8KHr81KhETmAsObdoWDyXScLTVW"/>
+</div>
+</div>
+</div>
+</main>
+<!-- ✅ Floating Bottom Popup -->
+<div id="searchPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <div class="flex flex-col gap-3">
+<button
+  class="flex w-full items-center justify-center gap-3 rounded-lg bg-primary px-4 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-primary/90"
+  onclick="addToSearchList('Vintage Leather Jacket')">
+  <span class="material-symbols-outlined"> search </span>
+  Add to Search List
+</button>
+
+      <button
+        class="flex w-full items-center justify-center gap-3 rounded-lg border border-zinc-300 bg-transparent px-4 py-3 font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+        onclick="window.location.href='../../../../Premium_Users/viewlist.html';">
+        <span class="material-symbols-outlined"> history </span>
+        View List
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Reminder Popup -->
+<div id="reminderPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <h2 class="mb-3 text-center font-display text-lg font-bold text-gray-900 dark:text-white">Reminder Options</h2>
+    <div class="space-y-3">
+<button onclick="openSetReminder()"
+class="flex w-full items-center gap-4 rounded-lg bg-primary/10 p-4 text-left text-gray-900 transition-colors hover:bg-primary/20 dark:bg-primary/20 dark:text-white dark:hover:bg-primary/30">
+  <span class="material-symbols-outlined text-primary">add_alert</span>
+  <p class="flex-1 truncate text-base font-medium">Set Reminder</p>
+</button>
+      <button
+        onclick="window.location.href='../../../../Premium_Users/reminderlist.html'"
+        class="flex w-full items-center gap-4 rounded-lg bg-gray-200/80 p-4 text-left text-gray-900 transition-colors hover:bg-gray-300/80 dark:bg-gray-700/80 dark:text-white dark:hover:bg-gray-600/80">
+        <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
+        <p class="flex-1 truncate text-base font-medium">View my reminder</p>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- ✅ Set Focus Limit Popup -->
+<div id="focusLimitPopup" class="fixed bottom-0 left-0 right-0 z-30 hidden">
+  <div class="relative flex min-h-[80vh] w-full flex-col rounded-t-lg bg-background-light dark:bg-background-dark font-display">
+    
+    <!-- Top drag handle -->
+    <div class="flex h-6 w-full items-center justify-center pt-1">
+      <div class="h-1 w-8 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col gap-3 p-3 pb-0 text-center">
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">Set Focus Limit</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        Set a daily or weekly time limit to help you stay focused.
+      </p>
+
+      <!-- Toggle Daily/Weekly -->
+      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm">
+        <label class="flex-1 cursor-pointer">
+          <input checked class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Daily</span>
+        </label>
+        <label class="flex-1 cursor-pointer">
+          <input class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Weekly</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="space-y-4 p-3">
+      <!-- Hours -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="hours-slider">Hours</label>
+          <span class="text-sm font-medium text-primary" id="hours-value">6h</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="hours-slider" max="24" min="0" type="range" value="6"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>24</span>
+        </div>
+      </div>
+
+      <!-- Minutes -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="minutes-slider">Minutes</label>
+          <span class="text-sm font-medium text-primary" id="minutes-value">30m</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="minutes-slider" max="59" min="0" type="range" value="30"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>59</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set Button -->
+    <div class="sticky bottom-0 w-full bg-background-light p-3 dark:bg-background-dark">
+      <button id="setFocusLimitBtn" class="w-full rounded-md bg-primary py-2.5 text-sm font-bold text-white shadow-md shadow-primary/30">
+        Set Focus Limit
+      </button>
+    </div>
+  </div>
+
+<div id="focusConfirmPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-green-500 text-5xl mb-3">check_circle</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Focus Limit Set!</h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      Your focus timer has been successfully set.
+    </p>
+    <button id="focusToast" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- ✅ Watchlist Popup Options -->
+<div id="watchlistOptionsPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center hidden px-4">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <h2 class="mb-3 text-center font-display text-lg font-bold text-gray-900 dark:text-white">Watchlist Options</h2>
+    <div class="space-y-3">
+      <!-- Add to Watchlist Button -->
+      <button onclick="addToWatchlist({
+  id: 'vintage-jacket',
+  title: 'Vintage Leather Jacket',
+  price: '$25',
+  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL'
+})" 
+class="flex w-full items-center gap-4 rounded-lg bg-primary/10 p-4 text-left text-gray-900 transition-colors hover:bg-primary/20 dark:bg-primary/20 dark:text-white dark:hover:bg-primary/30">
+  <span class="material-symbols-outlined text-primary">bookmark_add</span>
+  <p class="flex-1 truncate text-base font-medium">Add to my Watchlist</p>
+</button>
+
+
+      <!-- View Watchlist Button -->
+      <button onclick="window.location.href='../../../../Premium_Users/watchlist.html'" 
+        class="flex w-full items-center gap-4 rounded-lg bg-gray-200/80 p-4 text-left text-gray-900 transition-colors hover:bg-gray-300/80 dark:bg-gray-700/80 dark:text-white dark:hover:bg-gray-600/80">
+        <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">view_list</span>
+        <p class="flex-1 truncate text-base font-medium">View my Watchlist</p>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Focus Limit Over Popup -->
+<div id="focusOverPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-red-500 text-5xl mb-3">alarm</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      Focus Limit Over
+    </h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      You’ve reached your focus time limit. Take a break!
+    </p>
+    <button id="closeFocusOverPopup" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+<!-- ✅ Centered Watchlist Added Popup -->
+<!-- ✅ Watchlist Added Fancy Popup -->
+<div id="watchlistAddedPopup" 
+     class="fixed inset-0 z-50 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-500">
+  <div class="bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <!-- Icon -->
+    <div class="mb-4">
+      <div class="bg-primary/20 dark:bg-primary/30 rounded-full inline-block p-4">
+        <div class="bg-primary/20 dark:bg-primary/30 rounded-full p-3">
+          <svg class="text-primary w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.99999 15.172L19.192 5.979L20.606 7.393L9.99999 18L3.63599 11.636L5.04999 10.222L9.99999 15.172Z"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Added to Watchlist!</h1>
+
+    <!-- Description -->
+    <p class="text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
+      The item <span class="font-semibold">Vintage Leather Jacket</span> has been successfully added to your watchlist.
+    </p>
+  </div>
+</div>
+
+<!-- ✅ Centered Reminder Added Popup -->
+<div id="reminderAddedPopup" 
+     class="fixed inset-0 z-50 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-500">
+  <div class="bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <!-- Icon -->
+    <div class="mb-4">
+      <div class="bg-primary/20 dark:bg-primary/30 rounded-full inline-block p-4">
+        <div class="bg-primary/20 dark:bg-primary/30 rounded-full p-3">
+          <svg class="text-primary w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.99999 15.172L19.192 5.979L20.606 7.393L9.99999 18L3.63599 11.636L5.04999 10.222L9.99999 15.172Z"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Added to Reminder!</h1>
+
+    <!-- Description -->
+    <p class="text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
+      The item <span class="font-semibold">Vintage Leather Jacket</span> has been successfully added to your reminders.
+    </p>
+  </div>
+</div>
+
+<!-- ✅ Centered Search Added Popup -->
+<div id="searchAddedPopup" 
+     class="fixed inset-0 z-50 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-500">
+  <div class="bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <!-- Icon -->
+    <div class="mb-4">
+      <div class="bg-primary/20 dark:bg-primary/30 rounded-full inline-block p-4">
+        <div class="bg-primary/20 dark:bg-primary/30 rounded-full p-3">
+          <svg class="text-primary w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.99999 15.172L19.192 5.979L20.606 7.393L9.99999 18L3.63599 11.636L5.04999 10.222L9.99999 15.172Z"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Added to Search List!</h1>
+
+    <!-- Description -->
+    <p class="text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
+      The keyword <span class="font-semibold" id="searchKeywordText"></span> has been successfully added.
+    </p>
+  </div>
+</div>
+
+<!-- ✅ Set Reminder Modal -->
+<div id="setReminderPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="w-full max-w-md bg-background-light dark:bg-background-dark rounded-xl p-6">
+    <div class="flex justify-center py-2">
+      <div class="w-10 h-1.5 bg-subtle-light dark:bg-subtle-dark rounded-full"></div>
+    </div>
+    <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4 text-center">Set Reminder</h2>
+    <div class="space-y-4">
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-placeholder-light dark:text-placeholder-dark pointer-events-none">calendar_today</span>
+        <input id="reminderDate" class="w-full pl-12 pr-4 py-3 bg-background-light dark:bg-background-dark border border-subtle-light dark:border-subtle-dark rounded-lg text-text-light dark:text-text-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" type="text" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')"/>
+      </div>
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-placeholder-light dark:text-placeholder-dark pointer-events-none">schedule</span>
+        <input id="reminderTime" class="w-full pl-12 pr-4 py-3 bg-background-light dark:bg-background-dark border border-subtle-light dark:border-subtle-dark rounded-lg text-text-light dark:text-text-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" type="text" placeholder="Select Time" onfocus="(this.type='time')" onblur="(this.type='text')"/>
+      </div>
+    </div>
+    <div class="mt-6 flex justify-end gap-3">
+      <button onclick="closeReminderPopup()" class="px-4 py-2 bg-gray-300 dark:bg-zinc-700 rounded-lg font-semibold text-gray-800 dark:text-white">Cancel</button>
+      <button onclick="saveReminder()" class="px-4 py-2 bg-primary rounded-lg font-semibold text-white">Set Reminder</button>
+    </div>
+  </div>
+</div>
+
+<footer class="fixed bottom-0 left-0 right-0 border-t border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<nav class="flex items-center justify-around px-4 pb-3 pt-2">
+<a href="#" id="searchButton" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400">
+  <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+  </svg>
+  <span class="text-xs font-medium">Search</span>
+</a>
+<a id="watchlistButton" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+  <span class="material-symbols-outlined"> bookmark </span>
+  <span class="text-xs font-medium">Watchlist</span>
+</a>
+<a onclick="window.location.href='../../../../Premium_Users/productscreen.html'"class="nav-btn flex flex-col items-center gap-1 text-gold" href="#">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-xs font-bold">Home</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+<span class="text-xs font-medium">Reminder</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a48,48,0,1,1-48-48A48.05,48.05,0,0,1,176,128Zm-48-32a32,32,0,1,0,32,32A32.09,32.09,0,0,0,128,96Z"></path>
+</svg>
+<span class="text-xs font-medium">Focus</span>
+</a>
+</nav>
+</footer>
+</div>
+<script>
+  const searchButton = document.getElementById('searchButton');
+  const searchPopup = document.getElementById('searchPopup');
+
+  // ✅ Toggle popup visibility when search button clicked
+  searchButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    searchPopup.classList.toggle('hidden');
+  });
+
+  // ✅ Close popup when clicking outside of it
+  document.addEventListener('click', (e) => {
+    if (!searchPopup.classList.contains('hidden') &&
+        !searchPopup.contains(e.target) &&
+        !searchButton.contains(e.target)) {
+      searchPopup.classList.add('hidden');
+    }
+  });
+
+  // ✅ Highlight active bottom navigation button
+  const navButtons = document.querySelectorAll('.nav-btn');
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navButtons.forEach(b => {
+        b.classList.remove('text-gold', 'font-bold');
+        b.classList.add('text-zinc-500', 'dark:text-zinc-400');
+      });
+      btn.classList.add('text-gold', 'font-bold');
+      btn.classList.remove('text-zinc-500', 'dark:text-zinc-400');
+    });
+  });
+
+const reminderButton = document.querySelectorAll('.nav-btn')[3]; // Reminder button
+const reminderPopup = document.getElementById('reminderPopup');
+const setReminderPopup = document.getElementById('setReminderPopup');
+
+// Open the reminder options popup
+reminderButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  reminderPopup.classList.toggle('hidden');
+});
+
+// Close Reminder options popup if clicking outside
+document.addEventListener('click', (e) => {
+  if (!reminderPopup.classList.contains('hidden') &&
+      !reminderPopup.contains(e.target) &&
+      !reminderButton.contains(e.target)) {
+    reminderPopup.classList.add('hidden');
+  }
+});
+
+// Open Set Reminder popup from Reminder Options
+function openSetReminder() {
+  setReminderPopup.classList.remove('hidden');
+  reminderPopup.classList.add('hidden');
+}
+
+// Close Set Reminder popup
+function closeReminderPopup() {
+  setReminderPopup.classList.add('hidden');
+}
+
+function saveReminder() {
+  const date = document.getElementById('reminderDate').value;
+  const time = document.getElementById('reminderTime').value;
+
+  const product = {
+    title: "Vintage Black Cafe Racer Leather Jacket",
+    price: "$185.00",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL",
+    date: date,   // <-- corrected
+    time: time    // <-- corrected
+  };
+
+  if (!product.date || !product.time) {
+    alert("Please select both date and time");
+    return;
+  }
+
+  const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+  reminders.push(product);
+  localStorage.setItem("reminders", JSON.stringify(reminders));
+
+  closeReminderPopup();
+
+  // Show fancier popup
+  const reminderAddedPopup = document.getElementById("reminderAddedPopup");
+  reminderAddedPopup.classList.remove("opacity-0");
+  reminderAddedPopup.style.pointerEvents = "auto";
+
+  setTimeout(() => {
+    reminderAddedPopup.classList.add("opacity-0");
+    reminderAddedPopup.style.pointerEvents = "none";
+  }, 3000);
+}
+
+
+
+// ===== Focus Popup =====
+const focusButton = document.querySelectorAll('.nav-btn')[4]; // Focus button
+const focusLimitPopup = document.getElementById("focusLimitPopup");
+const focusSetButton = document.getElementById("setFocusLimitBtn");
+
+// Show focus limit popup instead of navigating
+focusButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  focusLimitPopup.classList.toggle("hidden");
+});
+
+// Close when clicking outside
+document.addEventListener("click", (e) => {
+  if (!focusLimitPopup.classList.contains("hidden") &&
+      !focusLimitPopup.contains(e.target) &&
+      !focusButton.contains(e.target)) {
+    focusLimitPopup.classList.add("hidden");
+  }
+});
+
+// Slider logic
+const hoursSlider = document.getElementById("hours-slider");
+const minutesSlider = document.getElementById("minutes-slider");
+const hoursValue = document.getElementById("hours-value");
+const minutesValue = document.getElementById("minutes-value");
+
+hoursSlider?.addEventListener("input", () => {
+  hoursValue.textContent = hoursSlider.value + "h";
+});
+minutesSlider?.addEventListener("input", () => {
+  minutesValue.textContent = minutesSlider.value + "m";
+});
+
+// ===== Timer Variables =====
+let focusHours = 0;
+let focusMinutes = 0;
+let focusSeconds = 0;
+let focusTimer;
+
+// Set focus time from sliders
+function startFocusTimer() {
+  focusHours = parseInt(hoursSlider.value) || 0;
+  focusMinutes = parseInt(minutesSlider.value) || 0;
+  focusSeconds = 0;
+
+  // Convert total time to seconds
+  let totalSeconds = focusHours * 3600 + focusMinutes * 60;
+
+  if (totalSeconds <= 0) return;
+
+  focusTimer = setInterval(() => {
+    totalSeconds--;
+
+    const displayHours = Math.floor(totalSeconds / 3600);
+    const displayMinutes = Math.floor((totalSeconds % 3600) / 60);
+    const displaySeconds = totalSeconds % 60;
+
+    // Optional: update UI if you have a timer display
+    // timerDisplay.textContent = `${displayHours}h ${displayMinutes}m ${displaySeconds}s`;
+
+    if (totalSeconds <= 0) {
+      clearInterval(focusTimer);
+      showFocusOverPopup();
+    }
+  }, 1000);
+}
+
+// ===== Show "Focus Over" Popup =====
+function showFocusOverPopup() {
+  const popup = document.getElementById("focusOverPopup");
+  popup.classList.remove("hidden");
+}
+
+// Close button
+document.getElementById("closeFocusOverPopup")?.addEventListener("click", () => {
+  document.getElementById("focusOverPopup").classList.add("hidden");
+});
+
+// ===== Start Timer When "Set Focus Limit" Button is Clicked =====
+focusSetButton?.addEventListener("click", () => {
+  // Hide the focus limit popup first
+  focusLimitPopup.classList.add("hidden");
+
+  // Small delay ensures smooth transition
+  setTimeout(() => {
+    const focusConfirmPopup = document.getElementById("focusConfirmPopup");
+    focusConfirmPopup.classList.remove("hidden");
+  }, 100);
+
+  // Start the focus timer
+  startFocusTimer();
+});
+
+
+// Close confirm popup
+document.getElementById("focusToast")?.addEventListener("click", () => {
+  document.getElementById("focusConfirmPopup").classList.add("hidden");
+});
+
+// ✅ Function to show popup for 10 seconds
+function showPopupFor10Seconds(popupId) {
+  const popup = document.getElementById(popupId);
+  if (!popup) return;
+
+  // Show popup
+  popup.classList.remove('hidden');
+
+  // Hide after 10 seconds
+  setTimeout(() => {
+    popup.classList.add('hidden');
+  }, 10000); // 10 seconds = 10000ms
+}
+
+
+const watchlistButtonMain = document.getElementById('watchlistButton');
+const watchlistOptionsPopup = document.getElementById('watchlistOptionsPopup');
+const watchlistToast = document.getElementById('watchlistToast');
+
+// Sample item info
+const currentItem = {
+  id: 'vintage-jacket',
+  title: 'Vintage Leather Jacket',
+  price: '$25',
+  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL'
+};
+
+function getWatchlist() {
+  return JSON.parse(localStorage.getItem('watchlist') || '[]');
+}
+
+function saveWatchlist(list) {
+  localStorage.setItem('watchlist', JSON.stringify(list));
+}
+
+function isItemInWatchlist(id) {
+  return getWatchlist().some(i => i.id === id);
+}
+
+function updateAddButtonUI(saved) {
+  const btn = document.querySelector('#watchlistOptionsPopup button span.material-symbols-outlined');
+  btn.textContent = saved ? 'bookmark_added' : 'bookmark_add';
+}
+
+function toggleWatchlist(item) {
+  const list = getWatchlist();
+  let saved;
+
+  // Check if item is already in watchlist
+  const index = list.findIndex(i => i.id === item.id);
+
+  if (index === -1) {
+    // Not in watchlist → add it
+    list.push(item);
+    saved = true;
+  } else {
+    // Already in watchlist → remove it
+    list.splice(index, 1);
+    saved = false;
+  }
+
+  // Save updated list
+  saveWatchlist(list);
+
+  // Update icon on nav button
+  const navIcon = watchlistButtonMain.querySelector('span.material-symbols-outlined');
+  navIcon.textContent = saved ? 'bookmark_added' : 'bookmark';
+
+  // Update Add button in popup
+  updateAddButtonUI(saved);
+
+  if (saved) {
+    showWatchlistAddedPopup(); // ✅ show center popup
+  }
+
+  // Show toast
+  watchlistToast.classList.remove('opacity-0');
+  watchlistToast.classList.add('opacity-100');
+
+  setTimeout(() => {
+    watchlistToast.classList.remove('opacity-100');
+    watchlistToast.classList.add('opacity-0');
+    watchlistOptionsPopup.classList.add('hidden');
+  }, 1500);
+}
+
+// Popup Add button
+document.querySelector('#watchlistOptionsPopup button:first-child').addEventListener('click', () => {
+  toggleWatchlist(currentItem);
+});
+
+
+// Nav watchlist button to open popup
+watchlistButtonMain.addEventListener('click', (e) => {
+  e.preventDefault();
+  watchlistOptionsPopup.classList.toggle('hidden');
+
+  // Update Add button icon on popup based on current state
+  updateAddButtonUI(isItemInWatchlist(currentItem.id));
+});
+
+function showWatchlistAddedPopup() {
+  const popup = document.getElementById('watchlistAddedPopup');
+  popup.classList.remove('opacity-0');
+  popup.classList.add('opacity-100');
+  popup.style.pointerEvents = 'auto'; // make it interactable if needed
+
+  // Hide after 3-5 seconds
+  setTimeout(() => {
+    popup.classList.remove('opacity-100');
+    popup.classList.add('opacity-0');
+    popup.style.pointerEvents = 'none';
+  }, 4000);
+}
+
+const searchBtn = document.querySelector("header button[onclick='openFacebookSearch()']");
+const searchBar = document.getElementById("searchBar");
+const searchInput = document.getElementById("marketplaceSearchInput");
+const searchGoBtn = document.getElementById("searchGoBtn");
+const searchCloseBtn = document.getElementById("searchCloseBtn");
+
+// 🔍 When user clicks top search icon → show search bar
+searchBtn.addEventListener("click", () => {
+  searchBar.classList.remove("hidden");
+  searchInput.focus();
+});
+
+// ❌ Close search bar
+searchCloseBtn.addEventListener("click", () => {
+  searchBar.classList.add("hidden");
+  searchInput.value = "";
+});
+
+// 🚀 Perform search on button click
+searchGoBtn.addEventListener("click", performFacebookSearch);
+
+// 🚀 Or when pressing Enter
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") performFacebookSearch();
+});
+
+// 🔗 Open Facebook Marketplace search
+function performFacebookSearch() {
+  const query = searchInput.value.trim();
+  if (!query) return;
+
+  const url = `https://www.facebook.com/marketplace/sanfrancisco/search/?query=${encodeURIComponent(query)}`;
+  window.open(url, "_blank"); // open in new tab
+  searchBar.classList.add("hidden");
+  searchInput.value = "";
+}
+
+function openFacebookSearch() {
+  const searchBar = document.getElementById("searchBar");
+  const searchInput = document.getElementById("marketplaceSearchInput");
+  searchBar.classList.remove("hidden");
+  searchInput.focus();
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const profileBtn = document.getElementById('profileBtn');
+  const profileDropdown = document.getElementById('profileDropdown');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const userName = document.getElementById('userName');
+  const userEmail = document.getElementById('userEmail');
+  const profileImg = document.getElementById('profileImg');
+  const profileInitial = document.getElementById('profileInitial');
+
+  const userData = JSON.parse(localStorage.getItem('loggedUser'));
+
+  if (userData) {
+    userName.textContent = userData.name || 'User';
+    userEmail.textContent = userData.email || '';
+
+    if (userData.photoURL) {
+      profileImg.src = userData.photoURL;
+      profileImg.classList.remove('hidden');
+      profileInitial.classList.add('hidden');
+    } else {
+      profileInitial.textContent = userData.name ? userData.name.charAt(0).toUpperCase() : 'U';
+      profileInitial.classList.add('font-bold', 'text-blue-400', 'text-lg');
+    }
+  } else {
+    window.location.href = "../../Login_screen/email_login.html";
+  }
+
+  profileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDropdown.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!profileDropdown.contains(e.target) && !profileBtn.contains(e.target)) {
+      profileDropdown.classList.add('hidden');
+    }
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('loggedUser');
+    window.location.href = "../../Login_screen/email_login.html";
+  });
+});
+
+
+function getSearchList() {
+  return JSON.parse(localStorage.getItem('searchList') || '[]');
+}
+
+function saveSearchList(list) {
+  localStorage.setItem('searchList', JSON.stringify(list));
+}
+
+function addToSearchList(keyword) {
+  const list = getSearchList();
+  if (!list.includes(keyword)) {
+    list.push(keyword);
+    saveSearchList(list);
+
+    // Show popup instead of alert
+    const popup = document.getElementById('searchAddedPopup');
+    const keywordText = document.getElementById('searchKeywordText');
+    keywordText.textContent = `"${keyword}"`;
+
+    popup.classList.remove('opacity-0');
+    popup.classList.add('opacity-100');
+    popup.style.pointerEvents = 'auto';
+
+    // Hide after 3-4 seconds
+    setTimeout(() => {
+      popup.classList.remove('opacity-100');
+      popup.classList.add('opacity-0');
+      popup.style.pointerEvents = 'none';
+    }, 4000);
+  }
+}
+
+
+function showReminderPopupForCurrentPage() {
+  const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+
+  // Get current product title dynamically
+  const productPage = document.getElementById("productPage");
+  if (!productPage) return;
+
+  const currentProductTitle = productPage.dataset.productTitle;
+
+  // Find reminder for this product
+  const reminder = reminders.find(r => r.title === currentProductTitle);
+
+  if (reminder) {
+    const popup = document.getElementById("reminderPopup");
+
+    // If you don't have these elements in your popup yet, add them:
+    // <img id="reminderProductImage">
+    // <p id="reminderProductTitle">
+
+    const productTitleEl = document.getElementById("reminderProductTitle");
+    const productImageEl = document.getElementById("reminderProductImage");
+
+    if (productTitleEl) productTitleEl.textContent = reminder.title;
+    if (productImageEl) productImageEl.src = reminder.image;
+
+    popup.classList.remove("hidden");
+
+    // Optional: Hide after 3 seconds
+    setTimeout(() => {
+      popup.classList.add("hidden");
+    }, 3000);
+  }
+}
+
+
+</script>
+</body>
+</html>

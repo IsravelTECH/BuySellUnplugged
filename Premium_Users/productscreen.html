@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            gold: "#FFD700",
+          },
+          fontFamily: {
+            display: ["Plus Jakarta Sans"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+
+<style>
+  .slider-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #1173d4;
+    border-radius: 9999px;
+    cursor: pointer;
+    margin-top: -8px;
+  }
+  .slider-thumb::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: #1173d4;
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+
+</style>
+
+
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen flex-col">
+<header class="sticky top-0 z-10 border-b border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+  <div class="flex items-center justify-between p-4">
+    <h1 class="text-xl font-bold text-zinc-900 dark:text-white">Marketplace</h1>
+    <div class="flex items-center gap-4">
+      <!-- ✅ Yellow badge -->
+      <button class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300">
+        <span class="material-symbols-outlined text-gold"> workspace_premium </span>
+      </button>
+
+        <!-- Search Bar Popup -->
+<div id="searchBar" class="fixed top-0 left-0 right-0 z-50 hidden bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700 p-3 shadow-md transition-all duration-300">
+  <div class="flex items-center gap-2">
+    <input
+      id="marketplaceSearchInput"
+      type="text"
+      placeholder="Search on Facebook Marketplace..."
+      class="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-700 px-3 py-2 text-zinc-800 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-primary"
+    />
+    <button
+      id="searchGoBtn"
+      class="rounded-lg bg-primary text-white px-4 py-2 font-semibold"
+    >
+      Search
+    </button>
+    <button
+      id="searchCloseBtn"
+      class="rounded-lg px-2 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+    >
+      ✕
+    </button>
+  </div>
+</div>
+<button
+  onclick="openFacebookSearch()"
+  class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+>
+  <span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+
+      <!-- ✅ Profile -->
+    <!-- Profile Dropdown -->
+<div class="relative" id="profileMenu">
+  <button id="profileBtn" class="h-10 w-10 flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 overflow-hidden bg-zinc-100 dark:bg-zinc-800 text-white font-bold text-lg">
+    <span id="profileInitial" class="text-blue-400 font-bold text-lg leading-none select-none"></span> <!-- Fallback letter -->
+    <img id="profileImg" class="h-full w-full object-cover hidden" alt="Profile" />
+  </button>
+
+  <!-- Dropdown -->
+  <div id="profileDropdown"
+    class="hidden absolute right-0 mt-2 w-56 rounded-lg bg-background-light dark:bg-zinc-800 shadow-lg p-3 z-50">
+    <p id="userName" class="font-semibold text-zinc-900 dark:text-white">User Name</p>
+    <p id="userEmail" class="text-sm text-zinc-600 dark:text-zinc-400 truncate">user@email.com</p>
+    <hr class="my-2 border-zinc-200 dark:border-zinc-700">
+    <button id="logoutBtn"
+      class="w-full text-left text-red-600 hover:text-red-700 font-medium">Logout</button>
+  </div>
+</div>
+
+    </div>
+  </div>
+</header>
+
+<main class="flex-1 overflow-y-auto p-4 pb-24">
+<div class="grid grid-cols-2 gap-4">
+<a onclick="window.location.href='../../../../Premium_Users/leathercoat.html';" class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Vintage Leather Jacket" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$25</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Vintage Leather Jacket</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Brooklyn, NY · 2d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Handmade Ceramic Mug" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKIzu1VHTMNsPE8KX7Dv-2RmaE6ZlJPoN8LVwOzJt6kCXZq4mfS8mktw36pvZCmqNXh9miA6oRfAMU3kA_OItugntwrYOXR_QtX-XLhvqPm9wJ8CfBny1mpfJ6uln9bRU4ssJZ_PNbC73gGvWu96Hbay8BnB-reyIYtRyNSdzYcv1Ce8EJtD215U_LCGbiCQXqYEjtpo20ubKjna2fdXWq2CuxBVKjvpU4GjANVs5WSgTl8uTQRSe_cNuTiAg9vLM-rjnbK0oOFfyh"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$15</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Handmade Ceramic Mug</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Los Angeles, CA · 1d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Antique Wooden Chair" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5RMW5QaKsx-LINEzq5C-Yua0wTIegbYZpxFHsACXvGPbFABZNfMEWk1KxuUNMmKx6n5o6Eq2aKoNjW3M5kuXZa91R6GRtP_Dshw83qAI0N51lEdXZv3_38udauxQ4-6HkGBf1hqMbi9EjBRGsLDOXQg8LPNMPYoH6tXyqddcJLZX4ezQvh4xqBqYur_KbbiNPKhbXF6gAuWgI0QcMQBiix1tm5C4cjT5FrZf4Us2C2rA3FOs3YbJl7yDLljfJ7fLy83aIrGC2LOnK"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$30</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Antique Wooden Chair</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Chicago, IL · 3d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Retro Sunglasses" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHyi1AkjRjCFpGA5B9qLjmbxzPXwoi5XRIwiS5V6-Dg6AU4V4w3XqKW7P6EK0bddSkukb20589wwHPPKyRWNz_xY8q1o4EPh40L2YYMEu3qtBKIicHlgeS5B8C6l7IPa1HpdE-zc5zkPRU1P8exJ3U2sefLh5caonsHmW5srgddl3rZCo1c_R0MJdjqTE8-5JKhPGvqi7AgspRYleTc8vF4HnxOGaq7daQq_SFSj5KTS9_wdLpyJcW7vkecAjONIjRdEok-oLHbvLf"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$20</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Retro Sunglasses</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">San Francisco, CA · 2d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Classic Vinyl Record" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKvDVJ9PLuZT0VSdMBLP7QvzRPe8axMh9sGd_ExV0E-XoqK87aOFqyEv6PD1Su-UaA2eLj8A1TSDKheIFQsBKztEEZC1LckSHrEWJYttrFzVOeTQz76MNGVKRFYaCmsOwQHGBAPCnxkUaLn0pT7ePPCF3ftn2LuwRYZvHMF_ebaZUGbJaRQqfNlVEoAcIVK-9nx7ohCGo1QnMeovKZkLlBcIw_ooSFCCAyY5fbaMngylPKYGS3uTcofWcSub9-QQyyLRLa1HmcmlZH"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$10</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Classic Vinyl Record</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Austin, TX · 1d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Vintage Leather Jacket" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSneT_WFyFB2RQk45tjqJUCAs38Eoj51vfjBXNQR1L4HfZqSgGJ77bxTkCki1SCZU8bzkos0aJPR1FxLDE4afbM_BbXK__5ko0nZBp_FrBS7VxURpb6TjieRqzkaTjPxWiOTBXM3eMSqh3dXeOlu299TRB-0XaR4ACFAwD-zAL-2Qz9uX958jJtbdXdTq_4btQp6BtNN80V3L0h0umyrfAiYQUSwlyr5rpH5Ewzavdyxxx1NFg9f3JXcFPTlAc3lrqRA4qpbBpuoTD"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$25</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Vintage Leather Jacket</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Brooklyn, NY · 2d</p>
+</div>
+</a>
+</div>
+</main>
+<!-- ✅ Floating Bottom Popup -->
+<!-- ✅ Floating Bottom Popup -->
+<div id="searchPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <div class="flex flex-col gap-3">
+
+      <button
+        class="flex w-full items-center justify-center gap-3 rounded-lg border border-zinc-300 bg-transparent px-4 py-3 font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+        onclick="window.location.href='../../../../Premium_Users/viewlist.html';">
+        <span class="material-symbols-outlined"> history </span>
+        View List
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Reminder Popup -->
+<!-- <div id="reminderPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <h2 class="mb-3 text-center font-display text-lg font-bold text-gray-900 dark:text-white">Reminder Options</h2>
+    <div class="space-y-3">
+      <button
+        onclick="window.location.href='../../../../Premium_Users/reminderlist.html'"
+        class="flex w-full items-center gap-4 rounded-lg bg-gray-200/80 p-4 text-left text-gray-900 transition-colors hover:bg-gray-300/80 dark:bg-gray-700/80 dark:text-white dark:hover:bg-gray-600/80">
+        <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
+        <p class="flex-1 truncate text-base font-medium">View my reminder</p>
+      </button>
+    </div>
+  </div>
+</div>-->
+<!-- ✅ Set Focus Limit Popup -->
+<div id="focusLimitPopup" class="fixed bottom-0 left-0 right-0 z-30 hidden">
+  <div class="relative flex min-h-[80vh] w-full flex-col rounded-t-lg bg-background-light dark:bg-background-dark font-display">
+    
+    <!-- Top drag handle -->
+    <div class="flex h-6 w-full items-center justify-center pt-1">
+      <div class="h-1 w-8 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col gap-3 p-3 pb-0 text-center">
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">Set Focus Limit</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        Set a daily or weekly time limit to help you stay focused.
+      </p>
+
+      <!-- Toggle Daily/Weekly -->
+      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm">
+        <label class="flex-1 cursor-pointer">
+          <input checked class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Daily</span>
+        </label>
+        <label class="flex-1 cursor-pointer">
+          <input class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Weekly</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="space-y-4 p-3">
+      <!-- Hours -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="hours-slider">Hours</label>
+          <span class="text-sm font-medium text-primary" id="hours-value">6h</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="hours-slider" max="24" min="0" type="range" value="6"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>24</span>
+        </div>
+      </div>
+
+      <!-- Minutes -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="minutes-slider">Minutes</label>
+          <span class="text-sm font-medium text-primary" id="minutes-value">30m</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="minutes-slider" max="59" min="0" type="range" value="30"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>59</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set Button -->
+    <div class="sticky bottom-0 w-full bg-background-light p-3 dark:bg-background-dark">
+  <button id="setFocusLimitBtn" class="w-full rounded-md bg-primary py-2.5 text-sm font-bold text-white shadow-md shadow-primary/30">
+    Set Focus Limit
+  </button> 
+    </div>
+  </div>
+
+<div id="focusConfirmPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-green-500 text-5xl mb-3">check_circle</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Focus Limit Set!</h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      Your focus timer has been successfully set.
+    </p>
+    <button id="focusToast" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+</div>
+
+<!-- ✅ Focus Limit Over Popup -->
+<div id="focusOverPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-red-500 text-5xl mb-3">alarm</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      Focus Limit Over
+    </h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      You’ve reached your focus time limit. Take a break!
+    </p>
+    <button id="closeFocusOverPopup" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+
+<footer class="fixed bottom-0 left-0 right-0 border-t border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<nav class="flex items-center justify-around px-4 pb-3 pt-2">
+<a onclick="window.location.href='../../../../Premium_Users/searchlist.html'"  id="searchButton" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400">
+  <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+  </svg>
+  <span class="text-xs font-medium">Search</span>
+</a>
+<a onclick="window.location.href='../../../../Premium_Users/Watchlist.html'" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+  <span class="material-symbols-outlined"> bookmark </span>
+  <span class="text-xs font-medium">Watchlist</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-gold" href="#">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-xs font-bold">Home</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#" onclick="window.location.href='../../../../Premium_Users/reminderlist.html';">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+<span class="text-xs font-medium">Reminder</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a48,48,0,1,1-48-48A48.05,48.05,0,0,1,176,128Zm-48-32a32,32,0,1,0,32,32A32.09,32.09,0,0,0,128,96Z"></path>
+</svg>
+<span class="text-xs font-medium">Focus</span>
+</a>
+</nav>
+</footer>
+</div>
+<script>
+
+const searchButton = document.getElementById('searchButton');
+const searchPopup = document.getElementById('searchPopup');
+let popupTimeout;
+
+// Show popup on hover
+searchButton.addEventListener('mouseenter', () => {
+  searchPopup.classList.remove('hidden');
+
+  // Clear previous timer if exists
+  clearTimeout(popupTimeout);
+
+  // Hide popup after 10 seconds
+  popupTimeout = setTimeout(() => {
+    searchPopup.classList.add('hidden');
+  }, 10000); // 10 seconds
+});
+
+// Optional: Hide immediately if mouse leaves popup
+searchPopup.addEventListener('mouseleave', () => {
+  searchPopup.classList.add('hidden');
+  clearTimeout(popupTimeout);
+});
+
+
+
+
+  // ✅ Highlight active bottom navigation button
+  const navButtons = document.querySelectorAll('.nav-btn');
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navButtons.forEach(b => {
+        b.classList.remove('text-gold', 'font-bold');
+        b.classList.add('text-zinc-500', 'dark:text-zinc-400');
+      });
+      btn.classList.add('text-gold', 'font-bold');
+      btn.classList.remove('text-zinc-500', 'dark:text-zinc-400');
+    });
+  });
+
+const reminderButton = document.querySelectorAll('.nav-btn')[3]; // Reminder button
+const reminderPopup = document.getElementById('reminderPopup');
+
+reminderButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  reminderPopup.classList.toggle('hidden');
+});
+
+// Close Reminder popup when clicking outside
+document.addEventListener('click', (e) => {
+  if (!reminderPopup.classList.contains('hidden') &&
+      !reminderPopup.contains(e.target) &&
+      !reminderButton.contains(e.target)) {
+    reminderPopup.classList.add('hidden');
+  }
+});
+
+// ===== Focus Popup =====
+const focusButton = document.querySelectorAll('.nav-btn')[4]; // Focus button
+const focusLimitPopup = document.getElementById("focusLimitPopup");
+const focusSetButton = document.getElementById("setFocusLimitBtn");
+
+// Show focus limit popup instead of navigating
+focusButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  focusLimitPopup.classList.toggle("hidden");
+});
+
+// Close when clicking outside
+document.addEventListener("click", (e) => {
+  if (!focusLimitPopup.classList.contains("hidden") &&
+      !focusLimitPopup.contains(e.target) &&
+      !focusButton.contains(e.target)) {
+    focusLimitPopup.classList.add("hidden");
+  }
+});
+
+// Slider logic
+const hoursSlider = document.getElementById("hours-slider");
+const minutesSlider = document.getElementById("minutes-slider");
+const hoursValue = document.getElementById("hours-value");
+const minutesValue = document.getElementById("minutes-value");
+
+hoursSlider?.addEventListener("input", () => {
+  hoursValue.textContent = hoursSlider.value + "h";
+});
+minutesSlider?.addEventListener("input", () => {
+  minutesValue.textContent = minutesSlider.value + "m";
+});
+
+focusSetButton?.addEventListener("click", () => {
+  const focusConfirmPopup = document.getElementById("focusConfirmPopup");
+  
+  // Show the confirm popup
+  focusConfirmPopup.classList.remove("hidden");
+
+  // Hide the focus limit popup
+  focusLimitPopup.classList.add("hidden");
+});
+
+// Close confirm popup
+document.getElementById("focusToast")?.addEventListener("click", () => {
+  document.getElementById("focusConfirmPopup").classList.add("hidden");
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const profileBtn = document.getElementById('profileBtn');
+  const profileDropdown = document.getElementById('profileDropdown');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const userName = document.getElementById('userName');
+  const userEmail = document.getElementById('userEmail');
+  const profileImg = document.getElementById('profileImg');
+  const profileInitial = document.getElementById('profileInitial');
+
+  const userData = JSON.parse(localStorage.getItem('loggedUser'));
+
+  if (userData) {
+    userName.textContent = userData.name || 'User';
+    userEmail.textContent = userData.email || '';
+
+    if (userData.photoURL) {
+      profileImg.src = userData.photoURL;
+      profileImg.classList.remove('hidden');
+      profileInitial.classList.add('hidden');
+    } else {
+      profileInitial.textContent = userData.name ? userData.name.charAt(0).toUpperCase() : 'U';
+      profileInitial.classList.add('font-bold', 'text-blue-400', 'text-lg');
+    }
+  } else {
+    window.location.href = "../../Login_screen/email_login.html";
+  }
+
+  profileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDropdown.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!profileDropdown.contains(e.target) && !profileBtn.contains(e.target)) {
+      profileDropdown.classList.add('hidden');
+    }
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('loggedUser');
+    window.location.href = "../../Login_screen/email_login.html";
+  });
+});
+
+// === Focus Limit Timer Logic ===
+// === Focus Limit Timer Logic ===
+
+const searchBtn = document.querySelector("header button[onclick='openFacebookSearch()']");
+const searchBar = document.getElementById("searchBar");
+const searchInput = document.getElementById("marketplaceSearchInput");
+const searchGoBtn = document.getElementById("searchGoBtn");
+const searchCloseBtn = document.getElementById("searchCloseBtn");
+
+// 🔍 When user clicks top search icon → show search bar
+searchBtn.addEventListener("click", () => {
+  searchBar.classList.remove("hidden");
+  searchInput.focus();
+});
+
+// ❌ Close search bar
+searchCloseBtn.addEventListener("click", () => {
+  searchBar.classList.add("hidden");
+  searchInput.value = "";
+});
+
+// 🚀 Perform search on button click
+searchGoBtn.addEventListener("click", performFacebookSearch);
+
+// 🚀 Or when pressing Enter
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") performFacebookSearch();
+});
+
+// 🔗 Open Facebook Marketplace search
+function performFacebookSearch() {
+  const query = searchInput.value.trim();
+  if (!query) return;
+
+  const url = `https://www.facebook.com/marketplace/sanfrancisco/search/?query=${encodeURIComponent(query)}`;
+  window.open(url, "_blank"); // open in new tab
+  searchBar.classList.add("hidden");
+  searchInput.value = "";
+}
+
+function openFacebookSearch() {
+  const searchBar = document.getElementById("searchBar");
+  const searchInput = document.getElementById("marketplaceSearchInput");
+  searchBar.classList.remove("hidden");
+  searchInput.focus();
+}
+
+</script>
+</body></html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Watchlist</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Plus+Jakarta+Sans:wght@400;500;700;800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            gold: "#FFD700",   /* ✅ added gold */
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }       
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center p-4">
+<button class="text-foreground-light dark:text-foreground-dark" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold text-foreground-light dark:text-foreground-dark flex-1 text-center pr-8">Watchlist</h1>
+</div>
+</header>
+<main class="flex-grow p-4">
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<img alt="Vintage Leather Jacket" class="w-20 h-20 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCFUerexhcAlBCaBOQuwvPnBQefntG4kj6lST-07S0cntVSOg8BQhM9rMy7Hqbi4Y8RKTXDfvFmp50TO-mi6CMqU5GivbZ9EfEh9xnm-LTTnwvWqd_BN6Uw2d6duWz2MOefs2urI0fivDNxXtju7C-pBOD8Sxg3z4NfXEIWHw4vLiv-9veavDC7_TJPUXW__WDvPEzZ64y6gOEjOARerAkZsNUdYmHn19EWWTNhcrYNkid7gDgzSjqcxKtoFSgo0b5Fi-zjlqIOH_E"/>
+<div class="flex-grow">
+<p class="font-semibold text-foreground-light dark:text-foreground-dark">Vintage Leather Jacket</p>
+<p class="text-primary font-bold mt-1">$25</p>
+</div>
+<button class="bg-primary/20 hover:bg-primary/30 text-primary font-semibold py-2 px-4 rounded-full text-sm">
+            Remove
+          </button>
+</div>
+<div class="border-t border-border-light dark:border-border-dark"></div>
+<div class="flex items-center gap-4">
+<img alt="Handmade Ceramic Mug" class="w-20 h-20 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1e1uD_B23vy7QiApgmeWZU60PCkfyle9IB3MzDj3Y3ZWwpkW0aGlpAGbSw2Pf5TJPVJSbjZmembJb-S8TYCbS-3VEJMShi8EZHK-0QrAdQci2KWmu1TRKU-gV6CIQ3L7FZCoD7vICE9lvB0bS37L2W2i6AxEFo-DjSzKKOPayOnPx0yk5XZpLGyLycoM6p651Y46CSQuPvsLJRFKme_MQTMbZVLtG1KAGMapMGVz0uQ3zrjVJ1xE0CfdTSlzcpuHScZ-4JPA2C5kr"/>
+<div class="flex-grow">
+<p class="font-semibold text-foreground-light dark:text-foreground-dark">Handmade Ceramic Mug</p>
+<p class="text-primary font-bold mt-1">$15</p>
+</div>
+<button class="bg-primary/20 hover:bg-primary/30 text-primary font-semibold py-2 px-4 rounded-full text-sm">
+            Remove
+          </button>
+</div>
+<div class="border-t border-border-light dark:border-border-dark"></div>
+<div class="flex items-center gap-4">
+<img alt="Retro Sunglasses" class="w-20 h-20 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ9YY5NwvlQV1DDqqSe-1KSMZ7EX1sMmsksvblff9mHCrb6XrDLiGtxZKFgwBeCHADWHWdFFnwJrwJVZ90AS6dNKnlfzCThbbYr7B1SCc9Y-gJsTztq9gwtMFEPQgToY5TNVEzm6uxvfLlhWXSa9c82-0TROzVuRk3bbPY_0byuvHFN0Q3dfD_II5ZJbBApyJgybJSNl-zv92F13H1rIGxc0IpqqTPvRcsucjmDSpfTKehfJ--BqxWHx5L0Pws3-cAV4kKsuvz1OK4"/>
+<div class="flex-grow">
+<p class="font-semibold text-foreground-light dark:text-foreground-dark">Retro Sunglasses</p>
+<p class="text-primary font-bold mt-1">$40</p>
+</div>
+<button class="bg-primary/20 hover:bg-primary/30 text-primary font-semibold py-2 px-4 rounded-full text-sm">
+            Remove
+          </button>
+</div>
+<div class="border-t border-border-light dark:border-border-dark"></div>
+<div class="flex items-center gap-4">
+<img alt="Knitted Scarf" class="w-20 h-20 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMueWVcB910eugtwISRCVxWxfN25mJKV-_B9pn-DhZYtHhxXi4HQWa1wwicTu6P1yySUc5EFqXW10_VqYZT0JJbNLgeOnTfiyyXoTRZ_ZWaL30DtMElsCCdHIjRiU-mRYcZDP-I6P5fir92ZtIZACWTXnmG3LBrFydqjVapXgUS1fDxFYG0eOGUCsSqV_Uk_P5u-RdHOCsx84Lus_WVEz9EL5XvVIqG3XV_i1wLeES4ruetQvMXJNCwo0HhIIL9XsBkC2_BDPolvYR"/>
+<div class="flex-grow">
+<p class="font-semibold text-foreground-light dark:text-foreground-dark">Knitted Scarf</p>
+<p class="text-primary font-bold mt-1">$30</p>
+</div>
+<button class="bg-primary/20 hover:bg-primary/30 text-primary font-semibold py-2 px-4 rounded-full text-sm">
+            Remove
+          </button>
+</div>
+</div>
+</main>
+<!-- ✅ Floating Bottom Popup -->
+<div id="searchPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <div class="flex flex-col gap-3">
+      <button
+        class="flex w-full items-center justify-center gap-3 rounded-lg border border-zinc-300 bg-transparent px-4 py-3 font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+        onclick="window.location.href='../../../../Premium_Users/viewlist.html';">
+        <span class="material-symbols-outlined"> history </span>
+        View List
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Reminder Popup -->
+<!--<div id="reminderPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <h2 class="mb-3 text-center font-display text-lg font-bold text-gray-900 dark:text-white">Reminder</h2>
+    <div class="space-y-3">
+      <button
+        onclick="window.location.href='../../../../Premium_Users/reminderlist.html'"
+        class="flex w-full items-center gap-4 rounded-lg bg-gray-200/80 p-4 text-left text-gray-900 transition-colors hover:bg-gray-300/80 dark:bg-gray-700/80 dark:text-white dark:hover:bg-gray-600/80">
+        <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
+        <p class="flex-1 truncate text-base font-medium">View my reminder</p>
+      </button>
+    </div>
+  </div>
+</div>-->
+<!-- ✅ Set Focus Limit Popup -->
+<div id="focusLimitPopup" class="fixed bottom-0 left-0 right-0 z-30 hidden">
+  <div class="relative flex min-h-[80vh] w-full flex-col rounded-t-lg bg-background-light dark:bg-background-dark font-display">
+    
+    <!-- Top drag handle -->
+    <div class="flex h-6 w-full items-center justify-center pt-1">
+      <div class="h-1 w-8 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col gap-3 p-3 pb-0 text-center">
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">Set Focus Limit</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        Set a daily or weekly time limit to help you stay focused.
+      </p>
+
+      <!-- Toggle Daily/Weekly -->
+      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm">
+        <label class="flex-1 cursor-pointer">
+          <input checked class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Daily</span>
+        </label>
+        <label class="flex-1 cursor-pointer">
+          <input class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Weekly</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="space-y-4 p-3">
+      <!-- Hours -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="hours-slider">Hours</label>
+          <span class="text-sm font-medium text-primary" id="hours-value">6h</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="hours-slider" max="24" min="0" type="range" value="6"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>24</span>
+        </div>
+      </div>
+
+      <!-- Minutes -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="minutes-slider">Minutes</label>
+          <span class="text-sm font-medium text-primary" id="minutes-value">30m</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="minutes-slider" max="59" min="0" type="range" value="30"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>59</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set Button -->
+    <div class="sticky bottom-0 w-full bg-background-light p-3 dark:bg-background-dark">
+      <button id="setFocusLimitBtn" class="w-full rounded-md bg-primary py-2.5 text-sm font-bold text-white shadow-md shadow-primary/30">
+        Set Focus Limit
+      </button>
+    </div>
+  </div>
+
+  <!-- ✅ Success Toast -->
+  <div id="focusToast" class="fixed bottom-16 left-1/2 -translate-x-1/2 bg-green-600 text-white px-3 py-1.5 rounded-md shadow-md opacity-0 transition-opacity duration-500 text-sm">
+    ✅ focus has been set
+  </div>
+</div>
+
+<!-- ✅ Focus Limit Over Popup -->
+<div id="focusOverPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-red-500 text-5xl mb-3">alarm</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      Focus Limit Over
+    </h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      You’ve reached your focus time limit. Take a break!
+    </p>
+    <button id="closeFocusOverPopup" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+<footer class="fixed bottom-0 left-0 right-0 border-t border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<nav class="flex items-center justify-around px-4 pb-3 pt-2">
+<a onclick="window.location.href='../../../../Premium_Users/searchlist.html'" id="searchButton" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400">
+  <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+  </svg>
+  <span class="text-xs font-medium">Search</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-gold" href="#">
+  <span class="material-symbols-outlined"> bookmark </span>
+  <span class="text-xs font-medium">Watchlist</span>
+</a>
+<a onclick="window.location.href='../../../../Premium_Users/productscreen.html'" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-xs font-bold">Home</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#" onclick="window.location.href='../../../../Premium_Users/reminderlist.html';">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+<span class="text-xs font-medium">Reminder</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a48,48,0,1,1-48-48A48.05,48.05,0,0,1,176,128Zm-48-32a32,32,0,1,0,32,32A32.09,32.09,0,0,0,128,96Z"></path>
+</svg>
+<span class="text-xs font-medium">Focus</span>
+</a>
+</nav>
+</footer>
+</div>
+<script>
+
+const searchButton = document.getElementById('searchButton');
+const searchPopup = document.getElementById('searchPopup');
+let popupTimeout;
+
+// Show popup on hover
+searchButton.addEventListener('mouseenter', () => {
+  searchPopup.classList.remove('hidden');
+
+  // Clear previous timer if exists
+  clearTimeout(popupTimeout);
+
+  // Hide popup after 10 seconds
+  popupTimeout = setTimeout(() => {
+    searchPopup.classList.add('hidden');
+  }, 10000); // 10 seconds
+});
+
+// Optional: Hide immediately if mouse leaves popup
+searchPopup.addEventListener('mouseleave', () => {
+  searchPopup.classList.add('hidden');
+  clearTimeout(popupTimeout);
+});
+
+  // ✅ Highlight active bottom navigation button
+  const navButtons = document.querySelectorAll('.nav-btn');
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navButtons.forEach(b => {
+        b.classList.remove('text-gold', 'font-bold');
+        b.classList.add('text-zinc-500', 'dark:text-zinc-400');
+      });
+      btn.classList.add('text-gold', 'font-bold');
+      btn.classList.remove('text-zinc-500', 'dark:text-zinc-400');
+    });
+  });
+
+const reminderButton = document.querySelectorAll('.nav-btn')[3]; // Reminder button
+const reminderPopup = document.getElementById('reminderPopup');
+
+reminderButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  reminderPopup.classList.toggle('hidden');
+});
+
+// Close Reminder popup when clicking outside
+document.addEventListener('click', (e) => {
+  if (!reminderPopup.classList.contains('hidden') &&
+      !reminderPopup.contains(e.target) &&
+      !reminderButton.contains(e.target)) {
+    reminderPopup.classList.add('hidden');
+  }
+});
+
+// ===== Focus Popup =====
+const focusButton = document.querySelectorAll('.nav-btn')[4]; // Focus button
+const focusLimitPopup = document.getElementById("focusLimitPopup");
+const focusSetButton = document.getElementById("setFocusLimitBtn");
+
+// Show focus limit popup instead of navigating
+focusButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  focusLimitPopup.classList.toggle("hidden");
+});
+
+// Close when clicking outside
+document.addEventListener("click", (e) => {
+  if (!focusLimitPopup.classList.contains("hidden") &&
+      !focusLimitPopup.contains(e.target) &&
+      !focusButton.contains(e.target)) {
+    focusLimitPopup.classList.add("hidden");
+  }
+});
+
+// Slider logic
+const hoursSlider = document.getElementById("hours-slider");
+const minutesSlider = document.getElementById("minutes-slider");
+const hoursValue = document.getElementById("hours-value");
+const minutesValue = document.getElementById("minutes-value");
+
+hoursSlider?.addEventListener("input", () => {
+  hoursValue.textContent = hoursSlider.value + "h";
+});
+minutesSlider?.addEventListener("input", () => {
+  minutesValue.textContent = minutesSlider.value + "m";
+});
+
+// Save and show toast
+focusSetButton?.addEventListener("click", () => {
+  const toast = document.getElementById("focusToast");
+  toast.classList.remove("opacity-0");
+  toast.classList.add("opacity-100");
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-100");
+    toast.classList.add("opacity-0");
+    focusLimitPopup.classList.add("hidden");
+  }, 1500);
+});
+
+function getWatchlist() {
+  return JSON.parse(localStorage.getItem('watchlist') || '[]');
+}
+
+function removeFromWatchlist(itemId) {
+  const list = getWatchlist().filter(i => i.id !== itemId);
+  localStorage.setItem('watchlist', JSON.stringify(list));
+  renderWatchlist(); // re-render after removing
+}
+
+function renderWatchlist() {
+  const container = document.querySelector('.space-y-4');
+  container.innerHTML = ''; // clear existing items
+  const list = getWatchlist();
+
+  if (list.length === 0) {
+    container.classList.add('flex', 'flex-col', 'items-center', 'justify-center', 'min-h-[70vh]');
+    container.innerHTML = `
+      <div class="text-center text-gray-500 dark:text-gray-400">
+        <span class="material-symbols-outlined text-6xl mb-3 text-primary/50">bookmark_remove</span>
+        <p class="text-lg font-semibold">No items in your Watchlist</p>
+        <p class="text-sm mt-1 text-gray-400 dark:text-gray-500">Add items to your watchlist to see them here.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // reset layout if items exist
+  container.classList.remove('flex', 'items-center', 'justify-center', 'min-h-[70vh]');
+  container.innerHTML = '';
+
+  list.forEach(item => {
+    const itemEl = document.createElement('div');
+    itemEl.className = 'flex items-center gap-4';
+    itemEl.innerHTML = `
+      <img src="${item.image}" class="w-20 h-20 object-cover rounded-lg" alt="${item.title}">
+      <div class="flex-grow">
+        <p class="font-semibold text-foreground-light dark:text-foreground-dark">${item.title}</p>
+        <p class="text-primary font-bold mt-1">${item.price}</p>
+      </div>
+      <button class="bg-primary/20 hover:bg-primary/30 text-primary font-semibold py-2 px-4 rounded-full text-sm">Remove</button>
+    `;
+    itemEl.querySelector('button').addEventListener('click', () => removeFromWatchlist(item.id));
+    container.appendChild(itemEl);
+
+    const divider = document.createElement('div');
+    divider.className = 'border-t border-border-light dark:border-border-dark';
+    container.appendChild(divider);
+  });
+}
+
+
+// On page load
+document.addEventListener('DOMContentLoaded', renderWatchlist);
+
+// === Focus Limit Timer Logic ===
+let focusTimer;
+
+focusSetButton?.addEventListener("click", () => {
+  const hours = parseInt(hoursSlider.value) || 0;
+  const minutes = parseInt(minutesSlider.value) || 0;
+  const totalMs = (hours * 60 + minutes) * 60 * 1000;
+
+  if (totalMs <= 0) return;
+
+  // Clear previous timer if any
+  clearTimeout(focusTimer);
+
+  // ✅ Show toast + close popup
+  const toast = document.getElementById("focusToast");
+  toast.classList.remove("opacity-0");
+  toast.classList.add("opacity-100");
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-100");
+    toast.classList.add("opacity-0");
+    focusLimitPopup.classList.add("hidden");
+  }, 1500);
+
+  // ✅ Start the focus timer
+  focusTimer = setTimeout(() => {
+    const popup = document.getElementById("focusOverPopup");
+    popup.classList.remove("hidden");
+  }, totalMs);
+});
+
+// ✅ Close focus-over popup
+const closePopupBtn = document.getElementById("closeFocusOverPopup");
+closePopupBtn?.addEventListener("click", () => {
+  document.getElementById("focusOverPopup").classList.add("hidden");
+});
+
+</script>
+
+</body></html>

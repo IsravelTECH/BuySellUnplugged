@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>BuySellUnplugged - My Reminders</title>
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            gold: "#FFD700",
+          },
+          fontFamily: {
+            display: ["Plus Jakarta Sans"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="flex h-screen flex-col">
+    <header
+      class="sticky top-0 z-20 flex items-center justify-between p-4 bg-background-light dark:bg-background-dark/80 backdrop-blur-sm">
+      <button
+        class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300" onclick="history.back()">
+        <span class="material-symbols-outlined"> arrow_back </span>
+      </button>
+      <h1 class="text-xl font-bold text-zinc-900 dark:text-white">My Reminders</h1>
+      <div class="flex items-center gap-2">
+        <button class="flex h-10 w-10 items-center justify-center rounded-full text-gold">
+          <span class="material-symbols-outlined">workspace_premium</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto">
+      <div class="p-4 space-y-4" id="reminderContainer"></div>
+    </main>
+
+<!-- ✅ Floating Bottom Popup -->
+<div id="searchPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <div class="flex flex-col gap-3">
+      <button
+        class="flex w-full items-center justify-center gap-3 rounded-lg border border-zinc-300 bg-transparent px-4 py-3 font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+        onclick="window.location.href='../../../../Premium_Users/viewlist.html';">
+        <span class="material-symbols-outlined"> history </span>
+        View List
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Reminder Popup -->
+<!--<div id="reminderPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
+  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
+    <h2 class="mb-3 text-center font-display text-lg font-bold text-gray-900 dark:text-white">Reminder</h2>
+    <div class="space-y-3">
+      <button
+        onclick="window.location.href='../../../../Premium_Users/reminderlist.html'"
+        class="flex w-full items-center gap-4 rounded-lg bg-gray-200/80 p-4 text-left text-gray-900 transition-colors hover:bg-gray-300/80 dark:bg-gray-700/80 dark:text-white dark:hover:bg-gray-600/80">
+        <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
+        <p class="flex-1 truncate text-base font-medium">View my reminder</p>
+      </button>
+    </div>
+  </div>
+</div>-->
+<!-- ✅ Set Focus Limit Popup -->
+<div id="focusLimitPopup" class="fixed bottom-0 left-0 right-0 z-30 hidden">
+  <div class="relative flex min-h-[80vh] w-full flex-col rounded-t-lg bg-background-light dark:bg-background-dark font-display">
+    
+    <!-- Top drag handle -->
+    <div class="flex h-6 w-full items-center justify-center pt-1">
+      <div class="h-1 w-8 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col gap-3 p-3 pb-0 text-center">
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">Set Focus Limit</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        Set a daily or weekly time limit to help you stay focused.
+      </p>
+
+      <!-- Toggle Daily/Weekly -->
+      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm">
+        <label class="flex-1 cursor-pointer">
+          <input checked class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Daily</span>
+        </label>
+        <label class="flex-1 cursor-pointer">
+          <input class="peer sr-only" name="limitType" type="radio" />
+          <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Weekly</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="space-y-4 p-3">
+      <!-- Hours -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="hours-slider">Hours</label>
+          <span class="text-sm font-medium text-primary" id="hours-value">6h</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="hours-slider" max="24" min="0" type="range" value="6"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>24</span>
+        </div>
+      </div>
+
+      <!-- Minutes -->
+      <div>
+        <div class="mb-1 flex justify-between">
+          <label class="text-sm font-medium text-slate-900 dark:text-white" for="minutes-slider">Minutes</label>
+          <span class="text-sm font-medium text-primary" id="minutes-value">30m</span>
+        </div>
+        <input class="w-full h-0.5 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer slider-thumb" id="minutes-slider" max="59" min="0" type="range" value="30"/>
+        <div class="mt-1 flex justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>0</span><span>59</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set Button -->
+    <div class="sticky bottom-0 w-full bg-background-light p-3 dark:bg-background-dark">
+      <button id="setFocusLimitBtn" class="w-full rounded-md bg-primary py-2.5 text-sm font-bold text-white shadow-md shadow-primary/30">
+        Set Focus Limit
+      </button>
+    </div>
+  </div>
+
+<!-- ✅ Focus Limit Set Confirmation Popup -->
+<div id="focusConfirmPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-green-500 text-5xl mb-3">check_circle</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      Focus Limit Set Successfully
+    </h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      Your focus limit has been applied. Stay focused!
+    </p>
+    <button id="closeFocusConfirmPopup" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+</div>
+
+<!-- Reminder Time Over Popup -->
+<div id="reminderOverPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-red-500 text-5xl mb-3">notifications_active</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      Reminder Time Over
+    </h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      Your product reminder time is over!
+    </p>
+    <button id="closeReminderOverPopup" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+
+<footer class="fixed bottom-0 left-0 right-0 border-t border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<nav class="flex items-center justify-around px-4 pb-3 pt-2">
+<a onclick="window.location.href='../../../../Premium_Users/searchlist.html'" id="searchButton" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400">
+  <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+  </svg>
+  <span class="text-xs font-medium">Search</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#" onclick="window.location.href='../../../../Premium_Users/watchlist.html';">
+  <span class="material-symbols-outlined"> bookmark </span>
+  <span class="text-xs font-medium">Watchlist</span>
+</a>
+<a onclick="window.location.href='../../../../Premium_Users/productscreen.html'" class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-xs font-bold">Home</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-gold" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+<span class="text-xs font-medium">Reminder</span>
+</a>
+<a class="nav-btn flex flex-col items-center gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a48,48,0,1,1-48-48A48.05,48.05,0,0,1,176,128Zm-48-32a32,32,0,1,0,32,32A32.09,32.09,0,0,0,128,96Z"></path>
+</svg>
+<span class="text-xs font-medium">Focus</span>
+</a>
+</nav>
+</footer>
+</div>
+
+  <!-- Edit Reminder Popup -->
+  <div id="editPopup"
+    class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-zinc-800 p-6 rounded-xl w-80 shadow-lg">
+      <h2 class="text-lg font-semibold mb-4 text-zinc-900 dark:text-white">Edit Reminder</h2>
+      <div class="space-y-3">
+        <label class="block text-sm text-zinc-700 dark:text-zinc-300">Date:</label>
+        <input type="date" id="editDate"
+          class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 text-zinc-900 dark:text-white" />
+
+        <label class="block text-sm text-zinc-700 dark:text-zinc-300">Time:</label>
+        <input type="time" id="editTime"
+          class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 text-zinc-900 dark:text-white" />
+      </div>
+
+      <div class="mt-5 flex justify-end gap-2">
+        <button onclick="closePopup()"
+          class="px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200 font-medium">Cancel</button>
+        <button onclick="saveEdit()"
+          class="px-4 py-2 rounded-lg bg-primary text-white font-medium">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Focus Limit Over Popup -->
+<div id="focusOverPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-red-500 text-5xl mb-3">alarm</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      Focus Limit Over
+    </h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      You’ve reached your focus time limit. Take a break!
+    </p>
+    <button id="closeFocusOverPopup" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+  <script>
+    let editIndex = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderReminders();
+    });
+
+function renderReminders() {
+  const container = document.getElementById("reminderContainer");
+  const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+  container.innerHTML = "";
+
+  if (reminders.length === 0) {
+    // Center the message in the page
+    container.classList.add("flex", "flex-col", "items-center", "justify-center", "min-h-[70vh]");
+    container.innerHTML = `
+      <div class="text-center text-zinc-500 dark:text-zinc-400">
+        <span class="material-symbols-outlined text-6xl mb-3 text-primary/50">notifications_off</span>
+        <p class="text-lg font-semibold">No reminders yet</p>
+        <p class="text-sm mt-1 text-zinc-400 dark:text-zinc-500">Set reminders to get notified here.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Reset layout if reminders exist
+  container.classList.remove("flex", "items-center", "justify-center", "min-h-[70vh]");
+  container.innerHTML = "";
+
+  reminders.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "bg-white dark:bg-zinc-800 rounded-lg shadow-sm";
+    card.innerHTML = `
+      <div class="p-4">
+        <div class="flex items-start gap-4">
+          <img alt="${item.title}" class="h-24 w-24 rounded-lg object-cover" src="${item.image}" />
+          <div class="flex-1">
+            <h2 class="font-semibold text-zinc-900 dark:text-white">${item.title}</h2>
+            <p class="text-lg font-bold text-zinc-900 dark:text-white mt-1">${item.price}</p>
+            <div class="flex items-center gap-2 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <span class="material-symbols-outlined text-base">notifications_active</span>
+              <span>Reminder: ${item.date} at ${item.time}</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-700 flex justify-end gap-2">
+          <button onclick="deleteReminder(${index})"
+            class="px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-700 rounded-lg">
+            Delete
+          </button>
+          <button onclick="openEditPopup(${index})"
+            class="px-4 py-2 text-sm font-semibold text-white bg-primary rounded-lg">
+            Edit
+          </button>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+
+    function deleteReminder(index) {
+      const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+      reminders.splice(index, 1);
+      localStorage.setItem("reminders", JSON.stringify(reminders));
+      renderReminders();
+    }
+
+    function openEditPopup(index) {
+      const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+      const item = reminders[index];
+      document.getElementById("editDate").value = item.date;
+      document.getElementById("editTime").value = item.time;
+      document.getElementById("editPopup").classList.remove("hidden");
+      editIndex = index;
+    }
+
+    function closePopup() {
+      document.getElementById("editPopup").classList.add("hidden");
+      editIndex = null;
+    }
+
+    function saveEdit() {
+      const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+      const date = document.getElementById("editDate").value;
+      const time = document.getElementById("editTime").value;
+
+      if (!date || !time) {
+        alert("Please enter both date and time.");
+        return;
+      }
+
+      reminders[editIndex].date = date;
+      reminders[editIndex].time = time;
+      localStorage.setItem("reminders", JSON.stringify(reminders));
+      closePopup();
+      renderReminders();
+    }
+
+const searchButton = document.getElementById('searchButton');
+const searchPopup = document.getElementById('searchPopup');
+let popupTimeout;
+
+// Show popup on hover
+searchButton.addEventListener('mouseenter', () => {
+  searchPopup.classList.remove('hidden');
+
+  // Clear previous timer if exists
+  clearTimeout(popupTimeout);
+
+  // Hide popup after 10 seconds
+  popupTimeout = setTimeout(() => {
+    searchPopup.classList.add('hidden');
+  }, 10000); // 10 seconds
+});
+
+// Optional: Hide immediately if mouse leaves popup
+searchPopup.addEventListener('mouseleave', () => {
+  searchPopup.classList.add('hidden');
+  clearTimeout(popupTimeout);
+});
+
+  // ✅ Highlight active bottom navigation button
+  const navButtons = document.querySelectorAll('.nav-btn');
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navButtons.forEach(b => {
+        b.classList.remove('text-gold', 'font-bold');
+        b.classList.add('text-zinc-500', 'dark:text-zinc-400');
+      });
+      btn.classList.add('text-gold', 'font-bold');
+      btn.classList.remove('text-zinc-500', 'dark:text-zinc-400');
+    });
+  });
+
+const reminderButton = document.querySelectorAll('.nav-btn')[3]; // Reminder button
+const reminderPopup = document.getElementById('reminderPopup');
+
+reminderButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  reminderPopup.classList.toggle('hidden');
+});
+
+// Close Reminder popup when clicking outside
+document.addEventListener('click', (e) => {
+  if (!reminderPopup.classList.contains('hidden') &&
+      !reminderPopup.contains(e.target) &&
+      !reminderButton.contains(e.target)) {
+    reminderPopup.classList.add('hidden');
+  }
+});
+
+// ===== Focus Popup =====
+const focusButton = document.querySelectorAll('.nav-btn')[4]; // Focus button
+const focusLimitPopup = document.getElementById("focusLimitPopup");
+const focusSetButton = document.getElementById("setFocusLimitBtn");
+
+// Show focus limit popup instead of navigating
+focusButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  focusLimitPopup.classList.toggle("hidden");
+});
+
+// Close when clicking outside
+document.addEventListener("click", (e) => {
+  if (!focusLimitPopup.classList.contains("hidden") &&
+      !focusLimitPopup.contains(e.target) &&
+      !focusButton.contains(e.target)) {
+    focusLimitPopup.classList.add("hidden");
+  }
+});
+
+// Slider logic
+const hoursSlider = document.getElementById("hours-slider");
+const minutesSlider = document.getElementById("minutes-slider");
+const hoursValue = document.getElementById("hours-value");
+const minutesValue = document.getElementById("minutes-value");
+
+hoursSlider?.addEventListener("input", () => {
+  hoursValue.textContent = hoursSlider.value + "h";
+});
+minutesSlider?.addEventListener("input", () => {
+  minutesValue.textContent = minutesSlider.value + "m";
+});
+
+// Save and show toast
+focusSetButton?.addEventListener("click", () => {
+  const toast = document.getElementById("focusToast");
+  toast.classList.remove("opacity-0");
+  toast.classList.add("opacity-100");
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-100");
+    toast.classList.add("opacity-0");
+    focusLimitPopup.classList.add("hidden");
+  }, 1500);
+});
+
+function getWatchlist() {
+  return JSON.parse(localStorage.getItem('watchlist') || '[]');
+}
+
+function removeFromWatchlist(itemId) {
+  const list = getWatchlist().filter(i => i.id !== itemId);
+  localStorage.setItem('watchlist', JSON.stringify(list));
+  renderWatchlist(); // re-render after removing
+}
+
+// === Focus Limit Timer Logic ===
+let focusTimer;
+
+focusSetButton?.addEventListener("click", () => {
+  const hours = parseInt(hoursSlider.value) || 0;
+  const minutes = parseInt(minutesSlider.value) || 0;
+  const totalMs = (hours * 60 + minutes) * 60 * 1000;
+
+  if (totalMs <= 0) return;
+
+  // Clear previous timer if any
+  clearTimeout(focusTimer);
+
+  // ✅ Show toast + close popup
+  const toast = document.getElementById("focusToast");
+  toast.classList.remove("opacity-0");
+  toast.classList.add("opacity-100");
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-100");
+    toast.classList.add("opacity-0");
+    focusLimitPopup.classList.add("hidden");
+  }, 1500);
+
+  // ✅ Start the focus timer
+  focusTimer = setTimeout(() => {
+    const popup = document.getElementById("focusOverPopup");
+    popup.classList.remove("hidden");
+  }, totalMs);
+});
+
+// ✅ Close focus-over popup
+const closePopupBtn = document.getElementById("closeFocusOverPopup");
+closePopupBtn?.addEventListener("click", () => {
+  document.getElementById("focusOverPopup").classList.add("hidden");
+});
+
+function checkReminders() {
+  const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+  const now = new Date();
+
+  for (let reminder of reminders) {
+    const reminderTime = new Date(`${reminder.date}T${reminder.time}`);
+    
+    // If reminder time is over and not yet notified
+    if (reminderTime <= now && !reminder.notified) {
+      showReminderOverPopup(reminder);
+      reminder.notified = true; // mark as notified
+    }
+  }
+
+  // Save updated notifications state
+  localStorage.setItem("reminders", JSON.stringify(reminders));
+}
+
+// Show popup function
+function showReminderOverPopup(reminder) {
+  const popup = document.getElementById("reminderOverPopup");
+  popup.querySelector("p").textContent = `Your reminder for "${reminder.title}" is over!`;
+  popup.classList.remove("hidden");
+}
+
+// Close popup button
+document.getElementById("closeReminderOverPopup")?.addEventListener("click", () => {
+  document.getElementById("reminderOverPopup").classList.add("hidden");
+});
+
+// Run the check immediately on page load
+checkReminders();
+
+// Optional: Check every minute for new reminders
+setInterval(checkReminders, 60000);
+
+
+
+</script>
+</body>
+</html>

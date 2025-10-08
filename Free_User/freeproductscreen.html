@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            gold: "#FFD700",
+          },
+          fontFamily: {
+            display: ["Plus Jakarta Sans"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen flex-col">
+<header class="sticky top-0 z-10 border-b border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+  <div class="flex items-center justify-between p-4">
+    <h1 class="text-xl font-bold text-zinc-900 dark:text-white">Marketplace</h1>
+    <div class="flex items-center gap-4">
+      <!--<button class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300">
+        <span class="material-symbols-outlined text-gold"> workspace_premium </span>
+      </button>-->
+      <!-- 🔍 Search button removed here -->
+           <!-- ✅ Profile Dropdown -->
+<!-- Profile Dropdown -->
+<div class="relative" id="profileMenu">
+  <button id="profileBtn" class="h-10 w-10 flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 overflow-hidden bg-zinc-100 dark:bg-zinc-800 text-white font-bold text-lg">
+    <span id="profileInitial" class="text-blue-400 font-bold text-lg leading-none select-none"></span> <!-- Fallback letter -->
+    <img id="profileImg" class="h-full w-full object-cover hidden" alt="Profile" />
+  </button>
+
+  <!-- Dropdown -->
+  <div id="profileDropdown"
+    class="hidden absolute right-0 mt-2 w-56 rounded-lg bg-background-light dark:bg-zinc-800 shadow-lg p-3 z-50">
+    <p id="userName" class="font-semibold text-zinc-900 dark:text-white">User Name</p>
+    <p id="userEmail" class="text-sm text-zinc-600 dark:text-zinc-400 truncate">user@email.com</p>
+    <hr class="my-2 border-zinc-200 dark:border-zinc-700">
+    <button id="logoutBtn"
+      class="w-full text-left text-red-600 hover:text-red-700 font-medium">Logout</button>
+  </div>
+</div>
+
+    </div>
+  </div>
+</header>
+
+<main class="flex-1 overflow-y-auto p-4 pb-24">
+<div class="grid grid-cols-2 gap-4">
+<a class="group" href="../../../../Free_User/productview.html">
+<div class="overflow-hidden rounded-lg">
+<img alt="Vintage Leather Jacket" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$25</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Vintage Leather Jacket</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Brooklyn, NY · 2d</p>
+</div>
+</a>
+<a class="group" href="../../../../Free_User/mug.html">
+<div class="overflow-hidden rounded-lg">
+<img alt="Handmade Ceramic Mug" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKIzu1VHTMNsPE8KX7Dv-2RmaE6ZlJPoN8LVwOzJt6kCXZq4mfS8mktw36pvZCmqNXh9miA6oRfAMU3kA_OItugntwrYOXR_QtX-XLhvqPm9wJ8CfBny1mpfJ6uln9bRU4ssJZ_PNbC73gGvWu96Hbay8BnB-reyIYtRyNSdzYcv1Ce8EJtD215U_LCGbiCQXqYEjtpo20ubKjna2fdXWq2CuxBVKjvpU4GjANVs5WSgTl8uTQRSe_cNuTiAg9vLM-rjnbK0oOFfyh"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$15</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Handmade Ceramic Mug</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Los Angeles, CA · 1d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Antique Wooden Chair" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5RMW5QaKsx-LINEzq5C-Yua0wTIegbYZpxFHsACXvGPbFABZNfMEWk1KxuUNMmKx6n5o6Eq2aKoNjW3M5kuXZa91R6GRtP_Dshw83qAI0N51lEdXZv3_38udauxQ4-6HkGBf1hqMbi9EjBRGsLDOXQg8LPNMPYoH6tXyqddcJLZX4ezQvh4xqBqYur_KbbiNPKhbXF6gAuWgI0QcMQBiix1tm5C4cjT5FrZf4Us2C2rA3FOs3YbJl7yDLljfJ7fLy83aIrGC2LOnK"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$30</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Antique Wooden Chair</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Chicago, IL · 3d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Retro Sunglasses" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHyi1AkjRjCFpGA5B9qLjmbxzPXwoi5XRIwiS5V6-Dg6AU4V4w3XqKW7P6EK0bddSkukb20589wwHPPKyRWNz_xY8q1o4EPh40L2YYMEu3qtBKIicHlgeS5B8C6l7IPa1HpdE-zc5zkPRU1P8exJ3U2sefLh5caonsHmW5srgddl3rZCo1c_R0MJdjqTE8-5JKhPGvqi7AgspRYleTc8vF4HnxOGaq7daQq_SFSj5KTS9_wdLpyJcW7vkecAjONIjRdEok-oLHbvLf"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$20</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Retro Sunglasses</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">San Francisco, CA · 2d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Classic Vinyl Record" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKvDVJ9PLuZT0VSdMBLP7QvzRPe8axMh9sGd_ExV0E-XoqK87aOFqyEv6PD1Su-UaA2eLj8A1TSDKheIFQsBKztEEZC1LckSHrEWJYttrFzVOeTQz76MNGVKRFYaCmsOwQHGBAPCnxkUaLn0pT7ePPCF3ftn2LuwRYZvHMF_ebaZUGbJaRQqfNlVEoAcIVK-9nx7ohCGo1QnMeovKZkLlBcIw_ooSFCCAyY5fbaMngylPKYGS3uTcofWcSub9-QQyyLRLa1HmcmlZH"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$10</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Classic Vinyl Record</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Austin, TX · 1d</p>
+</div>
+</a>
+<a class="group" href="#">
+<div class="overflow-hidden rounded-lg">
+<img alt="Vintage Leather Jacket" class="h-auto w-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSneT_WFyFB2RQk45tjqJUCAs38Eoj51vfjBXNQR1L4HfZqSgGJ77bxTkCki1SCZU8bzkos0aJPR1FxLDE4afbM_BbXK__5ko0nZBp_FrBS7VxURpb6TjieRqzkaTjPxWiOTBXM3eMSqh3dXeOlu299TRB-0XaR4ACFAwD-zAL-2Qz9uX958jJtbdXdTq_4btQp6BtNN80V3L0h0umyrfAiYQUSwlyr5rpH5Ewzavdyxxx1NFg9f3JXcFPTlAc3lrqRA4qpbBpuoTD"/>
+</div>
+<div class="mt-2">
+<p class="text-base font-bold text-zinc-900 dark:text-white">$25</p>
+<p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">Vintage Leather Jacket</p>
+<p class="text-xs text-zinc-500 dark:text-zinc-400">Brooklyn, NY · 2d</p>
+</div>
+</a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-0 right-0 border-t border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+  <nav class="flex items-center justify-around px-4 pb-3 pt-2">
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> search </span>
+      <span class="text-xs font-medium">Search</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> bookmark </span>
+      <span class="text-xs font-medium">Watchlist</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+
+    <a class="flex flex-col items-center gap-1 text-primary" href="#">
+      <span class="material-symbols-outlined"> home </span>
+      <span class="text-xs font-bold">Home</span>
+    </a>
+
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> notifications </span>
+      <span class="text-xs font-medium">Reminder</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+
+    <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
+      <span class="material-symbols-outlined"> data_usage </span>
+      <span class="text-xs font-medium">Focus</span>
+      <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+        <span class="material-symbols-outlined text-xs text-zinc-600 dark:text-zinc-300"> lock </span>
+      </div>
+    </button>
+  </nav>
+</footer>
+</div>
+
+
+<!-- Premium Popup with blurred background -->
+<div id="premiumModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-white/30 dark:bg-black/40 backdrop-blur-md">
+  <div class="relative w-full max-w-sm rounded-xl bg-white p-6 text-center dark:bg-zinc-800 shadow-xl">
+    <div class="absolute -top-3 left-1/2 -translate-x-1/2 transform">
+      <div class="relative rounded-md bg-zinc-100 p-2 dark:bg-zinc-700">
+        <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">Premium feature</p>
+        <div class="absolute -bottom-2 left-1/2 h-0 w-0 -translate-x-1/2 border-x-8 border-t-8 border-x-transparent border-t-zinc-100 dark:border-t-zinc-700"></div>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+      <span class="material-symbols-outlined text-4xl">workspace_premium</span>
+    </div>
+
+    <h2 class="mt-4 text-2xl font-bold text-zinc-900 dark:text-white">Go Premium</h2>
+    <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+      Unlock exclusive features like Watchlist, Search, Reminders, and Focus mode to enhance your buying and selling experience.
+    </p>
+
+<button class="mt-6 w-full rounded-lg bg-primary py-3 font-semibold text-white"
+  onclick="window.location.href='../../../../Free_User/upgrade1.html';">
+  Upgrade to Premium
+</button>
+
+
+    <button class="mt-2 w-full py-3 font-semibold text-zinc-600 dark:text-zinc-300"
+      onclick="togglePremiumModal(false);">
+      Not now
+    </button>
+  </div>
+</div>
+
+<script>
+  function togglePremiumModal(show) {
+    const modal = document.getElementById("premiumModal");
+    if (show) modal.classList.remove("hidden");
+    else modal.classList.add("hidden");
+  }
+
+  document.querySelectorAll(".locked").forEach(btn => {
+    btn.addEventListener("click", () => togglePremiumModal(true));
+  });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const profileBtn = document.getElementById('profileBtn');
+  const profileDropdown = document.getElementById('profileDropdown');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const userName = document.getElementById('userName');
+  const userEmail = document.getElementById('userEmail');
+  const profileImg = document.getElementById('profileImg');
+  const profileInitial = document.getElementById('profileInitial');
+
+  const userData = JSON.parse(localStorage.getItem('loggedUser'));
+
+  if (userData) {
+    userName.textContent = userData.name || 'User';
+    userEmail.textContent = userData.email || '';
+
+    if (userData.photoURL) {
+      profileImg.src = userData.photoURL;
+      profileImg.classList.remove('hidden');
+      profileInitial.classList.add('hidden');
+    } else {
+      profileInitial.textContent = userData.name ? userData.name.charAt(0).toUpperCase() : 'U';
+      profileInitial.classList.add('font-bold', 'text-blue-400', 'text-lg');
+    }
+  } else {
+    window.location.href = "../../Login_screen/email_login.html";
+  }
+
+  profileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDropdown.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!profileDropdown.contains(e.target) && !profileBtn.contains(e.target)) {
+      profileDropdown.classList.add('hidden');
+    }
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('loggedUser');
+    window.location.href = "../../Login_screen/email_login.html";
+  });
+});
+
+
+</script>
+
+</div>
+
+</body></html>

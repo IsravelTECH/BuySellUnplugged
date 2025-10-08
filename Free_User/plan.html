@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BuySellUnplugged - Choose Your Plan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            "success": "#10b981",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center p-4">
+<button class="text-slate-800 dark:text-white" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="flex-1 text-center text-lg font-bold text-slate-900 dark:text-white pr-6">Choose Your Plan</h1>
+</div>
+</header>
+<main class="flex-grow p-4">
+<div class="space-y-6">
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+<div class="p-6">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">Monthly</h3>
+<p class="text-3xl font-extrabold text-primary mt-2">$9.99<span class="text-base font-medium text-slate-500 dark:text-slate-400">/month</span></p>
+<p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Flexibility first. Cancel anytime.</p>
+</div>
+<div class="px-6 pb-6">
+<ul class="space-y-3 text-slate-700 dark:text-slate-300">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Priority Listings</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Verified Seller Badge</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Advanced Analytics</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Instant Alerts</span>
+</li>
+</ul>
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50">
+<button class="w-full h-12 px-6 text-primary font-bold bg-primary/10 dark:bg-primary/20 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" onclick="window.location.href='../../../../Free_User/monthly.html';">
+              Choose Monthly
+            </button>
+</div>
+</div>
+<div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border-2 border-primary">
+<div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">MOST POPULAR</div>
+<div class="p-6">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">Yearly</h3>
+<p class="text-3xl font-extrabold text-primary mt-2">$99.99<span class="text-base font-medium text-slate-500 dark:text-slate-400">/year</span></p>
+<p class="text-sm text-success font-semibold mt-1">Save 20% compared to monthly!</p>
+</div>
+<div class="px-6 pb-6">
+<ul class="space-y-3 text-slate-700 dark:text-slate-300">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Priority Listings</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Verified Seller Badge</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Advanced Analytics</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span>Instant Alerts</span>
+</li>
+<li class="flex items-center gap-3 font-bold text-primary">
+<span class="material-symbols-outlined">star</span>
+<span>Exclusive early access to new features</span>
+</li>
+</ul>
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50">
+<button class="w-full h-12 px-6 text-white font-bold bg-primary rounded-lg shadow-lg hover:opacity-90 transition-opacity"  onclick="window.location.href='../../../../Free_User/yearly.html';">
+              Choose Yearly
+            </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="p-4 text-center">
+<p class="text-xs text-slate-500 dark:text-slate-400">Recurring billing. Cancel anytime. By continuing, you agree to our <a class="font-medium text-primary hover:underline" href="#">Terms of Service</a>.</p>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Set Reminder</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            "text-light": "#101922",
+            "text-dark": "#f6f7f8",
+            "subtle-light": "#e3e5e8",
+            "subtle-dark": "#1f2937",
+            "placeholder-light": "#6b7280",
+            "placeholder-dark": "#9ca3af"
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex items-end justify-center min-h-screen bg-black/30">
+  <div class="w-full max-w-md bg-background-light dark:bg-background-dark rounded-t-xl">
+    <div class="flex justify-center py-3">
+      <div class="w-10 h-1.5 bg-subtle-light dark:bg-subtle-dark rounded-full"></div>
+    </div>
+    <div class="p-6">
+      <h1 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6">Set Reminder</h1>
+      <div class="space-y-4">
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-placeholder-light dark:text-placeholder-dark pointer-events-none">calendar_today</span>
+          <input class="w-full pl-12 pr-4 py-3 bg-background-light dark:bg-background-dark border border-subtle-light dark:border-subtle-dark rounded-lg text-text-light dark:text-text-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" onblur="(this.type='text')" onfocus="(this.type='date')" placeholder="Select Date" type="text"/>
+        </div>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-placeholder-light dark:text-placeholder-dark pointer-events-none">schedule</span>
+          <input class="w-full pl-12 pr-4 py-3 bg-background-light dark:bg-background-dark border border-subtle-light dark:border-subtle-dark rounded-lg text-text-light dark:text-text-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" onblur="(this.type='text')" onfocus="(this.type='time')" placeholder="Select Time" type="text"/>
+        </div>
+      </div>
+    </div>
+    <div class="px-6 pb-6 pt-2">
+      <button onclick="setReminder()" class="w-full bg-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-opacity-90 transition-colors duration-200">
+        Set Reminder
+      </button>
+      <p class="text-center text-sm text-placeholder-light dark:text-placeholder-dark mt-4">
+        Reminder set – We’ll notify you.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Popup -->
+<div id="popup" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-500">
+  ✅ Your reminder has been set
+</div>
+
+
+<div id="reminderPopup" 
+     class="fixed inset-0 z-50 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-500">
+  <div class="bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <div class="mb-4">
+      <img class="w-24 h-24 mx-auto rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL" alt="Product">
+    </div>
+    <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Reminder Set!</h1>
+    <p class="text-slate-600 dark:text-slate-400">We will notify you about <span class="font-semibold">Vintage Black Cafe Racer Leather Jacket</span> at the selected time.</p>
+  </div>
+</div>
+
+
+<script>
+function setReminder() {
+  const dateInput = document.querySelector('input[placeholder="Select Date"]').value;
+  const timeInput = document.querySelector('input[placeholder="Select Time"]').value;
+
+  // Example product info
+  const product = {
+    title: "Vintage Black Cafe Racer Leather Jacket",
+    price: "$185.00",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL",
+    date: dateInput,
+    time: timeInput
+  };
+
+  if (!product.date || !product.time) {
+    alert("Please select both date and time");
+    return;
+  }
+
+  // Save reminder in localStorage
+  const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+  reminders.push(product);
+  localStorage.setItem("reminders", JSON.stringify(reminders));
+
+  // Show fancier popup
+  const reminderPopup = document.getElementById("reminderPopup");
+  reminderPopup.classList.remove("opacity-0");
+  reminderPopup.style.pointerEvents = "auto";
+
+  // Hide popup after 3 seconds
+  setTimeout(() => {
+    reminderPopup.classList.add("opacity-0");
+    reminderPopup.style.pointerEvents = "none";
+
+    // Redirect after popup disappears
+    window.location.href = "../../Premium_Users/reminderlist.html";
+  }, 3000);
+}
+
+
+
+</script>
+
+</body>
+</html>

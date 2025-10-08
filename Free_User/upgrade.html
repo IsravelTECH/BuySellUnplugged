@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Premium Popup</title>
+
+<!-- Tailwind & Fonts -->
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#1173d4",
+        "background-light": "#f6f7f8",
+        "background-dark": "#101922",
+      },
+      fontFamily: {
+        display: ["Plus Jakarta Sans"],
+      },
+    },
+  },
+};
+</script>
+
+<style>
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: rgba(0,0,0,0.5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+</head>
+
+<body class="dark:bg-background-dark font-display">
+  <!-- Popup -->
+  <div class="relative w-full max-w-sm rounded-xl bg-white p-6 text-center dark:bg-zinc-800 shadow-xl">
+    <div class="absolute -top-3 left-1/2 -translate-x-1/2 transform">
+      <div class="relative rounded-md bg-zinc-100 p-2 dark:bg-zinc-700">
+        <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">Premium feature</p>
+        <div class="absolute -bottom-2 left-1/2 h-0 w-0 -translate-x-1/2 border-x-8 border-t-8 border-x-transparent border-t-zinc-100 dark:border-t-zinc-700"></div>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+      <span class="material-symbols-outlined text-4xl">workspace_premium</span>
+    </div>
+
+    <h2 class="mt-4 text-2xl font-bold text-zinc-900 dark:text-white">Go Premium</h2>
+    <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+      Unlock exclusive features like Watchlist, Search, Reminders, and Focus mode to enhance your buying and selling experience.
+    </p>
+
+    <button
+      class="mt-6 w-full rounded-lg bg-primary py-3 font-semibold text-white"
+      onclick="window.location.href='../../../../Premium_User/premium_upsell_screen_1/code.html';">
+      Upgrade to Premium
+    </button>
+
+    <button
+      class="mt-2 w-full py-3 font-semibold text-zinc-600 dark:text-zinc-300"
+      onclick="window.history.back();">
+      Not now
+    </button>
+  </div>
+</body>
+</html>
