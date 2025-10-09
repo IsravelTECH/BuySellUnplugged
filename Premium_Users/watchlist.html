@@ -117,20 +117,8 @@
   </div>
 </div>
 
-<!-- ✅ Reminder Popup -->
-<!--<div id="reminderPopup" class="fixed bottom-16 left-0 right-0 z-20 flex justify-center px-4 hidden">
-  <div class="w-full max-w-sm rounded-xl bg-background-light p-4 shadow-lg dark:bg-zinc-800">
-    <h2 class="mb-3 text-center font-display text-lg font-bold text-gray-900 dark:text-white">Reminder</h2>
-    <div class="space-y-3">
-      <button
-        onclick="window.location.href='../../../../Premium_Users/reminderlist.html'"
-        class="flex w-full items-center gap-4 rounded-lg bg-gray-200/80 p-4 text-left text-gray-900 transition-colors hover:bg-gray-300/80 dark:bg-gray-700/80 dark:text-white dark:hover:bg-gray-600/80">
-        <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
-        <p class="flex-1 truncate text-base font-medium">View my reminder</p>
-      </button>
-    </div>
-  </div>
-</div>-->
+
+<!-- ✅ Set Focus Limit Popup -->
 <!-- ✅ Set Focus Limit Popup -->
 <div id="focusLimitPopup" class="fixed bottom-0 left-0 right-0 z-30 hidden">
   <div class="relative flex min-h-[80vh] w-full flex-col rounded-t-lg bg-background-light dark:bg-background-dark font-display">
@@ -148,16 +136,27 @@
       </p>
 
       <!-- Toggle Daily/Weekly -->
-      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm">
+      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm" id="focusTypeTabs">
         <label class="flex-1 cursor-pointer">
-          <input checked class="peer sr-only" name="limitType" type="radio" />
+          <input checked class="peer sr-only" name="limitType" type="radio" value="daily" />
           <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Daily</span>
         </label>
         <label class="flex-1 cursor-pointer">
-          <input class="peer sr-only" name="limitType" type="radio" />
+          <input class="peer sr-only" name="limitType" type="radio" value="weekly" />
           <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Weekly</span>
         </label>
       </div>
+    </div>
+
+    <!-- Weekly Day Selector -->
+    <div id="weeklyDays" class="hidden px-4 mt-3 flex justify-between">
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">M</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">T</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">W</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">T</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">F</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">S</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">S</button>
     </div>
 
     <!-- Sliders -->
@@ -196,8 +195,13 @@
   </div>
 
   <!-- ✅ Success Toast -->
-  <div id="focusToast" class="fixed bottom-16 left-1/2 -translate-x-1/2 bg-green-600 text-white px-3 py-1.5 rounded-md shadow-md opacity-0 transition-opacity duration-500 text-sm">
-    ✅ focus has been set
+<div id="focusConfirmPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-green-500 text-5xl mb-3">check_circle</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Focus Limit Set!</h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      Your focus timer has been successfully set.
+    </p>
   </div>
 </div>
 
@@ -215,6 +219,7 @@
       OK
     </button>
   </div>
+</div>
 </div>
 
 <footer class="fixed bottom-0 left-0 right-0 border-t border-background-light/10 dark:border-background-dark/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
@@ -254,67 +259,47 @@ const searchButton = document.getElementById('searchButton');
 const searchPopup = document.getElementById('searchPopup');
 let popupTimeout;
 
-// Show popup on hover
+// === Search popup hover ===
 searchButton.addEventListener('mouseenter', () => {
   searchPopup.classList.remove('hidden');
-
-  // Clear previous timer if exists
   clearTimeout(popupTimeout);
-
-  // Hide popup after 10 seconds
   popupTimeout = setTimeout(() => {
     searchPopup.classList.add('hidden');
-  }, 10000); // 10 seconds
+  }, 10000);
 });
-
-// Optional: Hide immediately if mouse leaves popup
 searchPopup.addEventListener('mouseleave', () => {
   searchPopup.classList.add('hidden');
   clearTimeout(popupTimeout);
 });
 
-  // ✅ Highlight active bottom navigation button
-  const navButtons = document.querySelectorAll('.nav-btn');
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      navButtons.forEach(b => {
-        b.classList.remove('text-gold', 'font-bold');
-        b.classList.add('text-zinc-500', 'dark:text-zinc-400');
-      });
-      btn.classList.add('text-gold', 'font-bold');
-      btn.classList.remove('text-zinc-500', 'dark:text-zinc-400');
+// === Bottom nav highlight ===
+const navButtons = document.querySelectorAll('.nav-btn');
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    navButtons.forEach(b => {
+      b.classList.remove('text-gold', 'font-bold');
+      b.classList.add('text-zinc-500', 'dark:text-zinc-400');
     });
+    btn.classList.add('text-gold', 'font-bold');
+    btn.classList.remove('text-zinc-500', 'dark:text-zinc-400');
   });
-
-const reminderButton = document.querySelectorAll('.nav-btn')[3]; // Reminder button
-const reminderPopup = document.getElementById('reminderPopup');
-
-reminderButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  reminderPopup.classList.toggle('hidden');
 });
 
-// Close Reminder popup when clicking outside
-document.addEventListener('click', (e) => {
-  if (!reminderPopup.classList.contains('hidden') &&
-      !reminderPopup.contains(e.target) &&
-      !reminderButton.contains(e.target)) {
-    reminderPopup.classList.add('hidden');
-  }
-});
-
-// ===== Focus Popup =====
-const focusButton = document.querySelectorAll('.nav-btn')[4]; // Focus button
+// === Focus Popup ===
+const focusButton = document.querySelectorAll('.nav-btn')[4];
 const focusLimitPopup = document.getElementById("focusLimitPopup");
 const focusSetButton = document.getElementById("setFocusLimitBtn");
+const hoursSlider = document.getElementById("hours-slider");
+const minutesSlider = document.getElementById("minutes-slider");
+const hoursValue = document.getElementById("hours-value");
+const minutesValue = document.getElementById("minutes-value");
+const focusToast = document.getElementById("focusToast");
 
-// Show focus limit popup instead of navigating
 focusButton.addEventListener("click", (e) => {
   e.preventDefault();
   focusLimitPopup.classList.toggle("hidden");
 });
 
-// Close when clicking outside
 document.addEventListener("click", (e) => {
   if (!focusLimitPopup.classList.contains("hidden") &&
       !focusLimitPopup.contains(e.target) &&
@@ -323,18 +308,174 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Slider logic
-const hoursSlider = document.getElementById("hours-slider");
-const minutesSlider = document.getElementById("minutes-slider");
-const hoursValue = document.getElementById("hours-value");
-const minutesValue = document.getElementById("minutes-value");
-
-hoursSlider?.addEventListener("input", () => {
+hoursSlider.addEventListener("input", () => {
   hoursValue.textContent = hoursSlider.value + "h";
 });
-minutesSlider?.addEventListener("input", () => {
+minutesSlider.addEventListener("input", () => {
   minutesValue.textContent = minutesSlider.value + "m";
 });
+
+// === Timer variables ===
+let focusTimerInterval;
+let totalSeconds = 0;
+let remainingSeconds = 0;
+let isPaused = false;
+
+// Create timer display UI inside popup
+// Create timer display UI inside popup
+const timerContainer = document.createElement("div");
+timerContainer.className = "hidden flex flex-col items-center justify-center h-[60vh]"; // center vertically
+timerContainer.innerHTML = `
+  <div class="text-3xl font-bold text-primary mb-4" id="focusTimerDisplay">00:00:00</div>
+  <div class="flex gap-3">
+    <button id="pauseTimerBtn" class="px-4 py-2 bg-yellow-500 text-white rounded-md font-semibold">Pause</button>
+    <button id="resumeTimerBtn" class="px-4 py-2 bg-green-600 text-white rounded-md font-semibold hidden">Resume</button>
+    <button id="resetTimerBtn" class="px-4 py-2 bg-red-600 text-white rounded-md font-semibold">Reset</button>
+  </div>
+`;
+focusLimitPopup.querySelector(".space-y-4").after(timerContainer);
+
+
+const timerDisplay = timerContainer.querySelector("#focusTimerDisplay");
+const pauseBtn = timerContainer.querySelector("#pauseTimerBtn");
+const resumeBtn = timerContainer.querySelector("#resumeTimerBtn");
+const resetBtn = timerContainer.querySelector("#resetTimerBtn");
+
+// Format time HH:MM:SS
+function formatTime(secs) {
+  const h = String(Math.floor(secs / 3600)).padStart(2, "0");
+  const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
+  const s = String(secs % 60).padStart(2, "0");
+  return `${h}:${m}:${s}`;
+}
+
+// Update display
+function updateDisplay() {
+  timerDisplay.textContent = formatTime(remainingSeconds);
+}
+
+// Start countdown
+function startTimer() {
+  clearInterval(focusTimerInterval);
+  focusTimerInterval = setInterval(() => {
+    if (!isPaused) {
+      remainingSeconds--;
+      updateDisplay();
+      if (remainingSeconds <= 0) {
+        clearInterval(focusTimerInterval);
+        document.getElementById("focusOverPopup").classList.remove("hidden");
+      }
+    }
+  }, 1000);
+}
+
+// On "Set Focus Limit"
+const footerHeight = document.querySelector('footer').offsetHeight;
+focusLimitPopup.style.bottom = `${footerHeight}px`; // position above footer
+
+// On "Set Focus Limit"
+focusSetButton.addEventListener("click", () => {
+  const hours = parseInt(hoursSlider.value) || 0;
+  const minutes = parseInt(minutesSlider.value) || 0;
+  totalSeconds = (hours * 60 + minutes) * 60;
+  if (totalSeconds <= 0) return;
+
+  remainingSeconds = totalSeconds;
+  updateDisplay();
+
+  // Hide sliders, weekly days, and set button
+  focusLimitPopup.querySelector(".space-y-4").classList.add("hidden");
+  weeklyDays.classList.add("hidden");
+  focusSetButton.classList.add("hidden");
+
+  // Show timer in center
+  timerContainer.classList.remove("hidden");
+
+  // ✅ Show confirmation popup for 5 seconds
+  const confirmPopup = document.getElementById("focusConfirmPopup");
+  confirmPopup.classList.remove("hidden");
+  setTimeout(() => confirmPopup.classList.add("hidden"), 5000); // 5 seconds
+
+  // Start countdown timer
+  startTimer();
+});
+
+
+// Pause
+pauseBtn.addEventListener("click", () => {
+  isPaused = true;
+  pauseBtn.classList.add("hidden");
+  resumeBtn.classList.remove("hidden");
+});
+
+// Resume
+resumeBtn.addEventListener("click", () => {
+  isPaused = false;
+  resumeBtn.classList.add("hidden");
+  pauseBtn.classList.remove("hidden");
+});
+
+// Reset
+resetBtn.addEventListener("click", () => {
+  clearInterval(focusTimerInterval);
+  remainingSeconds = totalSeconds;
+  updateDisplay();
+  isPaused = false;
+
+  // Timer stays visible, sliders and set button remain hidden
+  timerContainer.classList.remove("hidden");
+  pauseBtn.classList.remove("hidden");
+  resumeBtn.classList.add("hidden");
+});
+
+
+// Close focus-over popup
+document.getElementById("closeFocusOverPopup").addEventListener("click", () => {
+  document.getElementById("focusOverPopup").classList.add("hidden");
+  // Reset popup view to sliders again
+  timerContainer.classList.add("hidden");
+  focusLimitPopup.querySelector(".space-y-4").classList.remove("hidden");
+  clearInterval(focusTimerInterval);
+});
+
+
+// === Weekly Toggle Logic ===
+const focusTypeTabs = document.getElementById("focusTypeTabs");
+const weeklyDays = document.getElementById("weeklyDays");
+
+focusTypeTabs.addEventListener("change", (e) => {
+  const selected = document.querySelector("input[name='limitType']:checked").value;
+  if (selected === "weekly") {
+    weeklyDays.classList.remove("hidden");
+  } else {
+    weeklyDays.classList.add("hidden");
+  }
+});
+
+// === Weekly Day Selectors ===
+document.querySelectorAll(".day-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.classList.toggle("bg-primary");
+    btn.classList.toggle("text-white");
+  });
+});
+
+// === Modify Reset Button Logic ===
+resetBtn.addEventListener("click", () => {
+  clearInterval(focusTimerInterval);
+  remainingSeconds = totalSeconds;
+  updateDisplay();
+  isPaused = false;
+  resumeBtn.classList.add("hidden");
+  pauseBtn.classList.remove("hidden");
+
+  // 🧭 Show the "Set Focus Limit" tab again
+  timerContainer.classList.add("hidden");
+  focusLimitPopup.querySelector(".space-y-4").classList.remove("hidden");
+  focusLimitPopup.querySelector(".space-y-4").scrollIntoView({ behavior: "smooth" });
+});
+
+
 
 // Save and show toast
 focusSetButton?.addEventListener("click", () => {
@@ -414,26 +555,24 @@ focusSetButton?.addEventListener("click", () => {
 
   if (totalMs <= 0) return;
 
-  // Clear previous timer if any
-  clearTimeout(focusTimer);
+  // ✅ Show the Focus Confirm Popup
+  const confirmPopup = document.getElementById("focusConfirmPopup");
+  confirmPopup.classList.remove("hidden");
 
-  // ✅ Show toast + close popup
-  const toast = document.getElementById("focusToast");
-  toast.classList.remove("opacity-0");
-  toast.classList.add("opacity-100");
-
+  // ✅ Hide the popup after 1.5s
   setTimeout(() => {
-    toast.classList.remove("opacity-100");
-    toast.classList.add("opacity-0");
-    focusLimitPopup.classList.add("hidden");
+    confirmPopup.classList.add("hidden");
+    focusLimitPopup.classList.add("hidden"); // close the focus limit popup
   }, 1500);
 
-  // ✅ Start the focus timer
+  // ✅ Start the focus timer for "Focus Limit Over" popup
+  clearTimeout(focusTimer);
   focusTimer = setTimeout(() => {
-    const popup = document.getElementById("focusOverPopup");
-    popup.classList.remove("hidden");
+    const overPopup = document.getElementById("focusOverPopup");
+    overPopup.classList.remove("hidden");
   }, totalMs);
 });
+
 
 // ✅ Close focus-over popup
 const closePopupBtn = document.getElementById("closeFocusOverPopup");

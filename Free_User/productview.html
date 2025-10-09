@@ -74,7 +74,7 @@ tailwind.config = {
   </svg>
 </button>
 
-<h1 class="text-lg font-bold text-zinc-900 dark:text-white">Marketplace</h1>
+<h1 class="text-lg font-bold text-zinc-900 dark:text-white">BuySellUnplugged</h1>
 <div class="flex items-center gap-2">
 <!-- Search Bar Popup -->
 <!--<div id="searchBar" class="fixed top-0 left-0 right-0 z-50 hidden bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700 p-3 shadow-md transition-all duration-300">
@@ -201,10 +201,10 @@ tailwind.config = {
       </div>
     </button>
 
-    <a class="flex flex-col items-center gap-1 text-primary" href="#">
-      <span class="material-symbols-outlined"> home </span>
-      <span class="text-xs font-bold">Home</span>
-    </a>
+    <button onclick="window.location.href='../Free_User/freeproductscreen.html'" data-tab="home" class="tab-btn flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500">
+      <span class="material-symbols-outlined">home</span>
+      <span class="text-xs font-medium">Home</span>
+    </button>
 
     <button class="locked flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-500 relative">
       <span class="material-symbols-outlined"> notifications </span>
@@ -312,6 +312,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = "../../Login_screen/email_login.html";
   });
 });
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Reset all buttons to default
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('text-primary', 'font-bold');
+        b.querySelector('.glow-effect')?.remove();
+      });
+
+      // Activate selected one
+      btn.classList.add('text-primary', 'font-bold');
+
+      // Add glow only when selected
+      const glow = document.createElement('div');
+      glow.className = 'glow-effect absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_2px_rgba(17,115,212,0.7)] animate-pulse';
+      btn.appendChild(glow);
+    });
+  });
 </script>
 
 </body>

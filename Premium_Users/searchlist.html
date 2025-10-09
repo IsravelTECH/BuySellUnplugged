@@ -46,7 +46,7 @@ body {
 <button class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300" onclick="history.back()">
 <span class="material-symbols-outlined"> arrow_back </span>
 </button>
-<h1 class="text-xl font-bold text-zinc-900 dark:text-white">Premium Search Results</h1>
+<h1 class="text-xl font-bold text-zinc-900 dark:text-white">BuySellUnplugged Search Results</h1>
 <div class="flex items-center gap-4">
 <button class="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 dark:text-zinc-300">
 <span class="material-symbols-outlined text-gold"> workspace_premium </span>
@@ -60,10 +60,12 @@ body {
 
 <!-- Search Input -->
 <div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"> search </span>
-<input type="text" placeholder="Search Marketplace" x-model="searchTerm"
-class="w-full rounded-full border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 py-3 pl-10 pr-4 text-zinc-900 dark:text-white focus:ring-primary focus:border-primary"/>
+  <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"> search </span>
+  <input type="text" placeholder="Search Marketplace" x-model="searchTerm"
+         class="w-full rounded-full border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 py-3 pl-10 pr-4 text-zinc-900 dark:text-white focus:ring-primary focus:border-primary"
+         @keydown.enter="goToSearchList()"/>
 </div>
+
 
 <!-- Location -->
 <div class="flex items-center gap-2">
@@ -141,16 +143,27 @@ class="w-full rounded-full border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark
       </p>
 
       <!-- Toggle Daily/Weekly -->
-      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm">
+      <div class="flex rounded-lg bg-primary/10 p-1 dark:bg-primary/20 text-sm" id="focusTypeTabs">
         <label class="flex-1 cursor-pointer">
-          <input checked class="peer sr-only" name="limitType" type="radio" />
+          <input checked class="peer sr-only" name="limitType" type="radio" value="daily" />
           <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Daily</span>
         </label>
         <label class="flex-1 cursor-pointer">
-          <input class="peer sr-only" name="limitType" type="radio" />
+          <input class="peer sr-only" name="limitType" type="radio" value="weekly" />
           <span class="block rounded-md bg-transparent px-3 py-1 text-center font-medium text-slate-600 peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm dark:text-slate-300 dark:peer-checked:bg-background-dark dark:peer-checked:text-white">Weekly</span>
         </label>
       </div>
+    </div>
+
+    <!-- Weekly Day Selector -->
+    <div id="weeklyDays" class="hidden px-4 mt-3 flex justify-between">
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">M</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">T</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">W</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">T</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">F</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">S</button>
+      <button class="day-btn w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 font-semibold">S</button>
     </div>
 
     <!-- Sliders -->
@@ -189,10 +202,33 @@ class="w-full rounded-full border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark
   </div>
 
   <!-- ✅ Success Toast -->
-  <div id="focusToast" class="fixed bottom-16 left-1/2 -translate-x-1/2 bg-green-600 text-white px-3 py-1.5 rounded-md shadow-md opacity-0 transition-opacity duration-500 text-sm">
-    ✅ focus has been set
+<div id="focusConfirmPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-green-500 text-5xl mb-3">check_circle</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Focus Limit Set!</h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      Your focus timer has been successfully set.
+    </p>
   </div>
 </div>
+
+<!-- ✅ Focus Limit Over Popup -->
+<div id="focusOverPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-lg text-center max-w-sm mx-4">
+    <span class="material-symbols-outlined text-red-500 text-5xl mb-3">alarm</span>
+    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      Focus Limit Over
+    </h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      You’ve reached your focus time limit. Take a break!
+    </p>
+    <button id="closeFocusOverPopup" class="px-4 py-2 bg-primary text-white rounded-md font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+</div>
+
 
 <!-- ✅ Focus Limit Over Popup -->
 <div id="focusOverPopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
@@ -252,15 +288,22 @@ function searchApp() {
         searchTerm: '',
         locationTerm: 'New York, NY',
         selectedJacket: null,
-        jackets: [
-            {id:'biker', name:'Classic Leather Biker Jacket', price:85, location:'Manhattan, NY', time:'1d', img:'https://lh3.googleusercontent.com/aida-public/AB6AXuDANyXQ5GWEV06_dgHRL_Z_WmkHdTSPixvbcYoC3-ZYXtL5JyAYYhvBAcQUP1lcjjG8nANtsuUWPRtEFqYzqBKNVepBkWqziZTpn3Bgh3q2sndQ-GZsRwPFvMOxmRJZxiIiCchOZBJAmVW4DzXPmVvaogPZ0jmvL-xHezkQ-NJzSh_r1KuIBP9FIi0PEqzTPSyD9dFBqHEmEONBgzXOMDKmvMMdaIiolfd53b_bJGCwojwqBzye9QN7dieDuT71S5wqsJ_6u9HNsDDL', link:'../../../../Premium_Users/leathercoat.html'},
-            {id:'suede', name:'Brown Suede Leather Jacket', price:70, location:'Jersey City, NJ', time:'3d', img:'https://lh3.googleusercontent.com/aida-public/AB6AXuDYRGu68zB0mEsW2af5jv4VKCcHguxwXTm1aGrmkXO-zrKRvW2RX0GQjIIpjcNVZ1x_vMGcik2zCGF9Oxp5esJU_sirzSJ53FGC3BIc02kVl2InmK4fl6MtdjVOCETVr1Ij5NXzyQVh6-eyPG5ubbEKl-cXNty02ZPFguOQDsWiumaT5fegtgzcwn1uA6DmmDxQCRFK71tjnIkywxDPSLytDo3Muthm9ZuySO_u_JdAerZHrTODUipoDIAHJi483sz5aYx4qNfnKQet', link:'#'},
-            {id:'red', name:"Women's Red Leather Jacket", price:95, location:'Brooklyn, NY', time:'12h', img:'https://lh3.googleusercontent.com/aida-public/AB6AXuCO3Bqk7uIBp3x5iv3cZwgHJNObrDd1wrbI8qUWAj50LmnlbwVxFI-PQULDIhRgfVeIP6N_wp0-DsmmvIT3_kgsIDH2KuIg708nMfXnfpnwdreMktK-s4L8ALaALPVw_01GqvBiSeiC7VpQyD31KOAY38I5BewSpKBbI2nDDGzpDpXWaHVx8EAxcrsjiZZCvk-NM8F49-bmKoThkvTJXV9a58hplx2MdJbAkFBspDllKQgcv5-_q9VkB188ym9dnqjonQ0z77LKmx8n', link:'#'},
-            {id:'bomber', name:'Distressed Leather Bomber Jacket', price:110, location:'Newark, NJ', time:'5d', img:'https://lh3.googleusercontent.com/aida-public/AB6AXuD4dJoziBtHDBTAHOrANuVAy_C1hrrpHPfzCL8c_LDSKx_jeztABeSs09Tdx-OG_U8Zm0X7im9u4rWzioXRtavXcPurVhwGdvwVImWOrnT3jESoq4LSqDRR4LgOeJvDBorfCbFZuNr2b-dftD9V_hK4UZ30RzpPLdnRz289wJVYu0koQV4bwvlfTylYAjQ_rlNje5mAPrcPTBiWCgGiZjOve8l_jrNDNQrvT61K2FSdmOGU_cQTlJr-dvUuSBVOyYUpKHOa1FYiMk5x', link:'#'}
-        ]
+        jackets: [ /* your jacket data */ ],
+        goToSearchList() {
+    // Get previous searches or empty array
+    let searches = JSON.parse(localStorage.getItem('viewListSearches') || '[]');
+
+    // Add current search if not empty
+    if (this.searchTerm.trim() !== '') {
+        searches.push(this.searchTerm.trim());
     }
+
+    // Save back to localStorage
+    localStorage.setItem('viewListSearches', JSON.stringify(searches));
 }
 
+    }
+}
 
 const searchButton = document.getElementById('searchButton');
 const searchPopup = document.getElementById('searchPopup');
