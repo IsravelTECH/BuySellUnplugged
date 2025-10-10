@@ -483,10 +483,11 @@ focusSetButton?.addEventListener("click", () => {
   toast.classList.remove("opacity-0");
   toast.classList.add("opacity-100");
 
+  // ✅ Hide only the toast, keep the popup open
   setTimeout(() => {
     toast.classList.remove("opacity-100");
     toast.classList.add("opacity-0");
-    focusLimitPopup.classList.add("hidden");
+    // focusLimitPopup.classList.add("hidden"); // ❌ remove this line
   }, 1500);
 });
 
@@ -521,24 +522,35 @@ function renderWatchlist() {
   container.classList.remove('flex', 'items-center', 'justify-center', 'min-h-[70vh]');
   container.innerHTML = '';
 
-  list.forEach(item => {
-    const itemEl = document.createElement('div');
-    itemEl.className = 'flex items-center gap-4';
-    itemEl.innerHTML = `
-      <img src="${item.image}" class="w-20 h-20 object-cover rounded-lg" alt="${item.title}">
-      <div class="flex-grow">
-        <p class="font-semibold text-foreground-light dark:text-foreground-dark">${item.title}</p>
-        <p class="text-primary font-bold mt-1">${item.price}</p>
-      </div>
-      <button class="bg-primary/20 hover:bg-primary/30 text-primary font-semibold py-2 px-4 rounded-full text-sm">Remove</button>
-    `;
-    itemEl.querySelector('button').addEventListener('click', () => removeFromWatchlist(item.id));
-    container.appendChild(itemEl);
+list.forEach(item => {
+  const itemEl = document.createElement('div');
+  itemEl.className = 'flex items-center gap-4 cursor-pointer'; // add cursor-pointer
+  itemEl.innerHTML = `
+    <img src="${item.image}" class="w-20 h-20 object-cover rounded-lg" alt="${item.title}">
+    <div class="flex-grow">
+      <p class="font-semibold text-foreground-light dark:text-foreground-dark">${item.title}</p>
+      <p class="text-primary font-bold mt-1">${item.price}</p>
+    </div>
+    <button class="bg-primary/20 hover:bg-primary/30 text-primary font-semibold py-2 px-4 rounded-full text-sm">Remove</button>
+  `;
 
-    const divider = document.createElement('div');
-    divider.className = 'border-t border-border-light dark:border-border-dark';
-    container.appendChild(divider);
+  // ✅ Redirect on click anywhere except the Remove button
+  itemEl.addEventListener('click', (e) => {
+    if (!e.target.closest('button')) {
+      window.location.href = item.url; // each item should have a URL property
+    }
   });
+
+  // Remove from watchlist
+  itemEl.querySelector('button').addEventListener('click', () => removeFromWatchlist(item.id));
+
+  container.appendChild(itemEl);
+
+  const divider = document.createElement('div');
+  divider.className = 'border-t border-border-light dark:border-border-dark';
+  container.appendChild(divider);
+});
+
 }
 
 
@@ -562,7 +574,6 @@ focusSetButton?.addEventListener("click", () => {
   // ✅ Hide the popup after 1.5s
   setTimeout(() => {
     confirmPopup.classList.add("hidden");
-    focusLimitPopup.classList.add("hidden"); // close the focus limit popup
   }, 1500);
 
   // ✅ Start the focus timer for "Focus Limit Over" popup

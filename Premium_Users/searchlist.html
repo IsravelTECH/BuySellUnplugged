@@ -400,10 +400,11 @@ focusSetButton?.addEventListener("click", () => {
   toast.classList.remove("opacity-0");
   toast.classList.add("opacity-100");
 
+  // ✅ Hide only the toast, keep the popup open
   setTimeout(() => {
     toast.classList.remove("opacity-100");
     toast.classList.add("opacity-0");
-    focusLimitPopup.classList.add("hidden");
+    // focusLimitPopup.classList.add("hidden"); // ❌ remove this line
   }, 1500);
 });
 
